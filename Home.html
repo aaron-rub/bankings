@@ -81,3 +81,121 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #goalCard {
+            width: 33.33%;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        #log {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        #total {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="goalCard">
+        <h1>Goal Tracker</h1>
+
+        <!-- Goal Input -->
+        <label for="goalInput">Set a Goal:</label>
+        <input type="text" id="goalInput">
+        <button onclick="setGoal()">Set Goal</button>
+
+        <!-- Reason Input -->
+        <label for="reasonInput">Reason for the Goal:</label>
+        <input type="text" id="reasonInput">
+
+        <!-- Log Input -->
+        <label for="logInput">Enter Amount:</label>
+        <input type="number" id="logInput">
+        <button onclick="logAmount()">Log</button>
+
+        <div id="log">
+            <h2>Log:</h2>
+            <ul id="logList"></ul>
+        </div>
+
+        <div id="total">
+            <h2>Total:</h2>
+            <span id="totalDisplay">0</span>
+            <br>
+            <span id="percentageDisplay">0%</span>
+            <span id="remainingDisplay">Remaining: 0</span>
+        </div>
+    </div>
+
+    <script>
+        let goal = 0;
+        let total = 0;
+
+        function setGoal() {
+            const goalInput = document.getElementById('goalInput').value;
+            goal = goalInput;
+            alert(`Goal set: ${goal}`);
+        }
+
+        function logAmount() {
+            const logInput = document.getElementById('logInput');
+            const inputValue = parseFloat(logInput.value);
+
+            if (!isNaN(inputValue)) {
+                var logEntry = document.createElement('li');
+                logEntry.textContent = `Amount: ${inputValue}, Reason: ${document.getElementById('reasonInput').value}`;
+
+                var logList = document.getElementById('logList');
+                logList.appendChild(logEntry);
+
+                updateTotal(inputValue);
+                updatePercentage();
+                updateRemaining();
+            } else {
+                alert('Please enter a valid number.');
+            }
+
+            // Clear the input field
+            logInput.value = '';
+        }
+
+        function updateTotal(amount) {
+            total += amount;
+            var totalDisplay = document.getElementById('totalDisplay');
+            totalDisplay.textContent = total.toFixed(2); // Display total with 2 decimal places
+        }
+
+        function updatePercentage() {
+            var percentageDisplay = document.getElementById('percentageDisplay');
+            var percentage = (total / goal) * 100;
+            percentageDisplay.textContent = percentage.toFixed(2) + '%';
+        }
+
+        function updateRemaining() {
+            var remainingDisplay = document.getElementById('remainingDisplay');
+            var remaining = goal - total;
+            remainingDisplay.textContent = `Remaining: ${remaining.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
