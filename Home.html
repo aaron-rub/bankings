@@ -1,143 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banking App</title>
-    <style>
-        .category-card {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px;
-            width: 200px;
-            display: inline-block;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banking App</title>
+  <style>
+    /* Add your CSS styling here */
+  </style>
 </head>
 <body>
+  <h1>Banking App</h1>
 
-<h1>Banking App</h1>
+  <div>
+    <h2>Account Total: $<span id="accountTotal">0</span></h2>
+    <label for="addMoney">Add Money: $</label>
+    <input type="number" id="addMoney">
+    <button onclick="addMoney()">Add</button>
+  </div>
 
-<!-- Add money to account total -->
-<label for="addMoney">Add Money:</label>
-<input type="number" id="addMoney" placeholder="Enter amount">
-<button onclick="addToTotal()">Add</button>
+  <div>
+    <h2>Create New Category</h2>
+    <label for="categoryName">Category Name:</label>
+    <input type="text" id="categoryName">
+    <label for="categoryGoal">Category Goal: $</label>
+    <input type="number" id="categoryGoal">
+    <button onclick="createCategory()">Create</button>
+  </div>
 
-<!-- Create new category and goal -->
-<label for="newCategory">New Category:</label>
-<input type="text" id="newCategory" placeholder="Category Name">
-<input type="number" id="categoryGoal" placeholder="Category Goal">
-<button onclick="createCategory()">Create Category</button>
+  <div>
+    <h2>Transfer to Category</h2>
+    <label for="selectCategory">Select Category:</label>
+    <select id="selectCategory"></select>
+    <label for="transferAmount">Transfer Amount: $</label>
+    <input type="number" id="transferAmount">
+    <button onclick="transferToCategory()">Transfer</button>
+  </div>
 
-<!-- Transfer money to a category -->
-<label for="selectCategory">Select Category:</label>
-<select id="selectCategory">
-    <!-- Add existing categories dynamically here -->
-</select>
-<input type="number" id="transferAmount" placeholder="Enter amount">
-<button onclick="transferToCategory()">Transfer</button>
+  <div id="categoryCards">
+    <!-- Category cards will be dynamically added here -->
+  </div>
 
-<!-- Display category cards -->
-<div id="categoryCards"></div>
+  <div id="transactionLog">
+    <h2>Transaction Log</h2>
+    <ul id="logList">
+      <!-- Transaction log entries will be dynamically added here -->
+    </ul>
+  </div>
 
-<!-- Transaction log -->
-<h2>Transaction Log</h2>
-<ul id="transactionLog"></ul>
+  <script>
+    // JavaScript logic for functionality
 
-<script>
-    let total = 0;
+    // Sample data structure to store categories
     let categories = [];
 
-    function addToTotal() {
-        const addMoneyInput = document.getElementById('addMoney');
-        const amount = parseFloat(addMoneyInput.value);
-        if (!isNaN(amount)) {
-            total += amount;
-            updateTotal();
-            logTransaction(`Added $${amount} to account total.`);
-        }
-        addMoneyInput.value = '';
+    function addMoney() {
+      // Add money to the account total
+      const addMoneyInput = document.getElementById('addMoney');
+      const amount = parseFloat(addMoneyInput.value);
+      const accountTotalElement = document.getElementById('accountTotal');
+      accountTotalElement.innerText = (parseFloat(accountTotalElement.innerText) + amount).toFixed(2);
+
+      // Log the transaction
+      logTransaction(`Added $${amount} to account.`);
     }
 
     function createCategory() {
-        const newCategoryInput = document.getElementById('newCategory');
-        const categoryGoalInput = document.getElementById('categoryGoal');
+      // Create a new category
+      const categoryNameInput = document.getElementById('categoryName');
+      const categoryGoalInput = document.getElementById('categoryGoal');
+      const categoryName = categoryNameInput.value;
+      const categoryGoal = parseFloat(categoryGoalInput.value);
 
-        const categoryName = newCategoryInput.value;
-        const categoryGoal = parseFloat(categoryGoalInput.value);
+      // Add the category to the list
+      categories.push({ name: categoryName, goal: categoryGoal, balance: 0 });
 
-        if (categoryName && !isNaN(categoryGoal)) {
-            categories.push({ name: categoryName, goal: categoryGoal, balance: 0 });
-            updateCategories();
-            logTransaction(`Created new category '${categoryName}' with a goal of $${categoryGoal}.`);
-        }
+      // Update the select dropdown with categories
+      updateCategoryDropdown();
 
-        newCategoryInput.value = '';
-        categoryGoalInput.value = '';
+      // Create a card for the new category
+      createCategoryCard(categoryName, categoryGoal);
+
+      // Log the transaction
+      logTransaction(`Created category: ${categoryName} with a goal of $${categoryGoal}.`);
+    }
+
+    function updateCategoryDropdown() {
+      // Update the select dropdown with categories
+      const selectCategory = document.getElementById('selectCategory');
+      selectCategory.innerHTML = '<option value="">Select Category</option>';
+      categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category.name;
+        option.innerText = category.name;
+        selectCategory.appendChild(option);
+      });
+    }
+
+    function createCategoryCard(name, goal) {
+      // Create a card for the new category
+      const categoryCards = document.getElementById('categoryCards');
+      const card = document.createElement('div');
+      card.innerHTML = `
+        <h3>${name}</h3>
+        <p>Goal: $${goal}</p>
+        <p>Balance: $0</p>
+        <p>Progress: 0%</p>
+      `;
+      categoryCards.appendChild(card);
     }
 
     function transferToCategory() {
-        const selectCategory = document.getElementById('selectCategory');
-        const transferAmountInput = document.getElementById('transferAmount');
+      // Transfer money to the selected category
+      const selectCategory = document.getElementById('selectCategory');
+      const transferAmountInput = document.getElementById('transferAmount');
+      const categoryName = selectCategory.value;
+      const transferAmount = parseFloat(transferAmountInput.value);
 
-        const categoryName = selectCategory.value;
-        const transferAmount = parseFloat(transferAmountInput.value);
+      // Update the category balance
+      const category = categories.find(c => c.name === categoryName);
+      category.balance += transferAmount;
 
-        const category = categories.find(c => c.name === categoryName);
+      // Update the category card
+      updateCategoryCard(category);
 
-        if (category && !isNaN(transferAmount) && transferAmount <= total) {
-            category.balance += transferAmount;
-            total -= transferAmount;
-            updateTotal();
-            updateCategories();
-            logTransaction(`Transferred $${transferAmount} to category '${categoryName}'.`);
-        }
+      // Deduct the amount from the account total
+      const accountTotalElement = document.getElementById('accountTotal');
+      accountTotalElement.innerText = (parseFloat(accountTotalElement.innerText) - transferAmount).toFixed(2);
 
-        transferAmountInput.value = '';
+      // Log the transaction
+      logTransaction(`Transferred $${transferAmount} to ${categoryName}.`);
     }
 
-    function updateTotal() {
-        // Update total display
-        document.getElementById('totalDisplay').innerText = `$${total.toFixed(2)}`;
-    }
-
-    function updateCategories() {
-        const categoryCards = document.getElementById('categoryCards');
-        categoryCards.innerHTML = '';
-
-        categories.forEach(category => {
-            const card = document.createElement('div');
-            card.classList.add('category-card');
-            card.innerHTML = `<h3>${category.name}</h3>
-                             <p>Goal: $${category.goal}</p>
-                             <p>Balance: $${category.balance}</p>
-                             <p>Goal Progress: ${((category.balance / category.goal) * 100).toFixed(2)}%</p>`;
-            categoryCards.appendChild(card);
-        });
-
-        // Update select options for transferring money
-        const selectCategory = document.getElementById('selectCategory');
-        selectCategory.innerHTML = '';
-        categories.forEach(category => {
-            const option = document.createElement('option');
-            option.value = category.name;
-            option.textContent = category.name;
-            selectCategory.appendChild(option);
-        });
+    function updateCategoryCard(category) {
+      // Update the category card with the latest data
+      const categoryCards = document.getElementById('categoryCards');
+      const card = categoryCards.querySelector(`div:contains(${category.name})`);
+      card.innerHTML = `
+        <h3>${category.name}</h3>
+        <p>Goal: $${category.goal}</p>
+        <p>Balance: $${category.balance.toFixed(2)}</p>
+        <p>Progress: ${(category.balance / category.goal * 100).toFixed(2)}%</p>
+      `;
     }
 
     function logTransaction(message) {
-        const transactionLog = document.getElementById('transactionLog');
-        const listItem = document.createElement('li');
-        listItem.innerText = `${getCurrentDateTime()} - ${message}`;
-        transactionLog.appendChild(listItem);
+      // Log the transaction at the bottom of the page
+      const logList = document.getElementById('logList');
+      const listItem = document.createElement('li');
+      const currentDate = new Date().toLocaleString();
+      listItem.innerText = `[${currentDate}] ${message}`;
+      logList.appendChild(listItem);
     }
 
-    function getCurrentDateTime() {
-        const now = new Date();
-        return `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+    // Polyfill for :contains (not supported in modern browsers)
+    if (!HTMLElement.prototype.containsText) {
+      HTMLElement.prototype.containsText = function (text) {
+        return this.innerText.includes(text);
+      };
     }
-</script>
-
+  </script>
 </body>
 </html>
