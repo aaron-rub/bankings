@@ -113,6 +113,10 @@
             font-size: 16px;
             margin-top: 10px;
         }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -120,13 +124,17 @@
         <h1>Goal Tracker</h1>
 
         <!-- Goal Input -->
-        <label for="goalInput">Set a Goal:</label>
-        <input type="text" id="goalInput">
-        <button onclick="setGoal()">Set Goal</button>
+        <div id="goalInputSection">
+            <label for="goalInput">Set a Goal:</label>
+            <input type="text" id="goalInput">
+            <button onclick="setGoal()">Set Goal</button>
+        </div>
 
         <!-- Reason Input -->
-        <label for="reasonInput">Reason for the Goal:</label>
-        <input type="text" id="reasonInput">
+        <div id="reasonInputSection" class="hidden">
+            <label for="reasonInput">Reason for the Goal:</label>
+            <input type="text" id="reasonInput">
+        </div>
 
         <!-- Log Input -->
         <label for="logInput">Enter Amount:</label>
@@ -138,7 +146,7 @@
             <ul id="logList"></ul>
         </div>
 
-        <div id="total">
+        <div id="total" class="hidden">
             <h2>Total:</h2>
             <span id="totalDisplay">0</span>
             <br>
@@ -154,7 +162,14 @@
         function setGoal() {
             const goalInput = document.getElementById('goalInput').value;
             goal = goalInput;
-            alert(`Goal set: ${goal}`);
+
+            // Hide goal input section
+            document.getElementById('goalInputSection').classList.add('hidden');
+            
+            // Show reason input section
+            const reasonInputSection = document.getElementById('reasonInputSection');
+            reasonInputSection.classList.remove('hidden');
+            reasonInputSection.innerHTML = `<p>Goal: ${goal}</p>`;
         }
 
         function logAmount() {
@@ -195,7 +210,11 @@
             var remainingDisplay = document.getElementById('remainingDisplay');
             var remaining = goal - total;
             remainingDisplay.textContent = `Remaining: ${remaining.toFixed(2)}`;
+
+            // Show total and percentage sections
+            document.getElementById('total').classList.remove('hidden');
         }
     </script>
 </body>
 </html>
+
