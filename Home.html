@@ -86,7 +86,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goal Tracker</title>
+    <title>Number Logger</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -97,7 +97,7 @@
             margin: 0;
         }
 
-        #goalCard {
+        #card {
             width: 33.33%;
             box-sizing: border-box;
             background-color: #f0f0f0;
@@ -110,111 +110,116 @@
         }
 
         #total {
-            font-size: 16px;
+            font-size: 24px;
             margin-top: 10px;
         }
 
-        .hidden {
+        #subtractSection {
+            margin-top: 20px;
+        }
+
+        #categoryInput, #subtractInput {
+            margin-bottom: 10px;
+        }
+
+        #categoryLabel {
+            font-size: 18px;
+            margin-bottom: 10px;
             display: none;
         }
     </style>
 </head>
 <body>
-    <div id="goalCard">
-        <h1>Goal Tracker</h1>
-
-        <!-- Goal Input -->
-        <div id="goalInputSection">
-            <label for="goalInput">Set a Goal:</label>
-            <input type="text" id="goalInput">
-            <button onclick="setGoal()">Set Goal</button>
-        </div>
-
-        <!-- Reason Input -->
-        <div id="reasonInputSection" class="hidden">
-            <label for="reasonInput">Reason for the Goal:</label>
-            <input type="text" id="reasonInput">
-        </div>
-
-        <!-- Log Input -->
-        <label for="logInput">Enter Amount:</label>
-        <input type="number" id="logInput">
-        <button onclick="logAmount()">Log</button>
+    <div id="card">
+        <h1>Number Logger</h1>
+        <label for="numberInput">Enter a Number:</label>
+        <input type="number" id="numberInput">
+        <button onclick="logNumber()">Log</button>
 
         <div id="log">
             <h2>Log:</h2>
             <ul id="logList"></ul>
         </div>
 
-        <div id="total" class="hidden">
+        <div id="total">
             <h2>Total:</h2>
             <span id="totalDisplay">0</span>
-            <br>
-            <span id="percentageDisplay">0%</span>
-            <span id="remainingDisplay">Remaining: 0</span>
+        </div>
+
+        <div id="subtractSection">
+            <label for="subtractInput">Subtract Value:</label>
+            <input type="number" id="subtractInput">
+            <label for="categoryInput">Category:</label>
+            <input type="text" id="categoryInput">
+            <button onclick="subtractFromTotal()">Subtract</button>
+
+            <div id="categoryLabel">
+                <h2>Category:</h2>
+                <span id="categoryDisplay"></span>
+            </div>
         </div>
     </div>
 
     <script>
-        let goal = 0;
-        let total = 0;
-
-        function setGoal() {
-            const goalInput = document.getElementById('goalInput').value;
-            goal = goalInput;
-
-            // Hide goal input section
-            document.getElementById('goalInputSection').classList.add('hidden');
-            
-            // Show reason input section
-            const reasonInputSection = document.getElementById('reasonInputSection');
-            reasonInputSection.classList.remove('hidden');
-            reasonInputSection.innerHTML = `<p>Goal: ${goal}</p>`;
-        }
-
-        function logAmount() {
-            const logInput = document.getElementById('logInput');
-            const inputValue = parseFloat(logInput.value);
+        function logNumber() {
+            var numberInput = document.getElementById('numberInput');
+            var inputValue = parseFloat(numberInput.value);
 
             if (!isNaN(inputValue)) {
+                var currentDate = new Date();
                 var logEntry = document.createElement('li');
-                logEntry.textContent = `Amount: ${inputValue}, Reason: ${document.getElementById('reasonInput').value}`;
+                logEntry.textContent = `Number: ${inputValue}, Date: ${currentDate.toLocaleDateString()}, Time: ${currentDate.toLocaleTimeString()}`;
 
                 var logList = document.getElementById('logList');
                 logList.appendChild(logEntry);
 
                 updateTotal(inputValue);
-                updatePercentage();
-                updateRemaining();
             } else {
                 alert('Please enter a valid number.');
             }
 
             // Clear the input field
-            logInput.value = '';
+            numberInput.value = '';
         }
 
-        function updateTotal(amount) {
-            total += amount;
+        function updateTotal(number) {
             var totalDisplay = document.getElementById('totalDisplay');
-            totalDisplay.textContent = total.toFixed(2); // Display total with 2 decimal places
+            var currentTotal = parseFloat(totalDisplay.textContent);
+            var newTotal = currentTotal + number;
+            totalDisplay.textContent = newTotal.toFixed(2); // Display total with 2 decimal places
         }
 
-        function updatePercentage() {
-            var percentageDisplay = document.getElementById('percentageDisplay');
-            var percentage = (total / goal) * 100;
-            percentageDisplay.textContent = percentage.toFixed(2) + '%';
-        }
+        function subtractFromTotal() {
+            var subtractInput = document.getElementById('subtractInput');
+            var categoryInput = document.getElementById('categoryInput');
+            var totalDisplay = document.getElementById('totalDisplay');
+            var categoryDisplay = document.getElementById('categoryDisplay');
 
-        function updateRemaining() {
-            var remainingDisplay = document.getElementById('remainingDisplay');
-            var remaining = goal - total;
-            remainingDisplay.textContent = `Remaining: ${remaining.toFixed(2)}`;
+            var subtractValue = parseFloat(subtractInput.value);
+            var currentTotal = parseFloat(totalDisplay.textContent);
 
-            // Show total and percentage sections
-            document.getElementById('total').classList.remove('hidden');
+            if (!isNaN(subtractValue)) {
+                var newTotal = currentTotal - subtractValue;
+                totalDisplay.textContent = newTotal.toFixed(2);
+
+                // Display category label and update its value
+                categoryDisplay.textContent = categoryInput.value;
+                categoryDisplay.parentElement.style.display = 'block';
+
+                // Clear input fields
+                subtractInput.value = '';
+                categoryInput.value = '';
+
+                // Hide category label after 5 seconds
+                setTimeout(function() {
+                    categoryDisplay.parentElement.style.display = 'none';
+                }, 5000);
+            } else {
+                alert('Please enter a valid number for subtraction.');
+            }
         }
     </script>
 </body>
 </html>
+
 
