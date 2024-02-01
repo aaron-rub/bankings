@@ -114,18 +114,8 @@
             margin-top: 10px;
         }
 
-        #subtractSection {
+        #categories {
             margin-top: 20px;
-        }
-
-        #categoryInput, #subtractInput {
-            margin-bottom: 10px;
-        }
-
-        #categoryLabel {
-            font-size: 18px;
-            margin-bottom: 10px;
-            display: none;
         }
     </style>
 </head>
@@ -146,17 +136,15 @@
             <span id="totalDisplay">0</span>
         </div>
 
-        <div id="subtractSection">
-            <label for="subtractInput">Subtract Value:</label>
-            <input type="number" id="subtractInput">
-            <label for="categoryInput">Category:</label>
-            <input type="text" id="categoryInput">
+        <div id="categories">
+            <h2>Categories:</h2>
+            <label for="categoryName">Category Name:</label>
+            <input type="text" id="categoryName">
+            <label for="subtractAmount">Subtract Amount:</label>
+            <input type="number" id="subtractAmount">
             <button onclick="subtractFromTotal()">Subtract</button>
 
-            <div id="categoryLabel">
-                <h2>Category:</h2>
-                <span id="categoryDisplay"></span>
-            </div>
+            <div id="categoryLog"></div>
         </div>
     </div>
 
@@ -190,36 +178,83 @@
         }
 
         function subtractFromTotal() {
-            var subtractInput = document.getElementById('subtractInput');
-            var categoryInput = document.getElementById('categoryInput');
-            var totalDisplay = document.getElementById('totalDisplay');
-            var categoryDisplay = document.getElementById('categoryDisplay');
+            var categoryNameInput = document.getElementById('categoryName');
+            var subtractAmountInput = document.getElementById('subtractAmount');
 
-            var subtractValue = parseFloat(subtractInput.value);
-            var currentTotal = parseFloat(totalDisplay.textContent);
+            var categoryName = categoryNameInput.value;
+            var subtractAmount = parseFloat(subtractAmountInput.value);
 
-            if (!isNaN(subtractValue)) {
-                var newTotal = currentTotal - subtractValue;
-                totalDisplay.textContent = newTotal.toFixed(2);
+            if (!isNaN(subtractAmount) && categoryName.trim() !== '') {
+                var categoryLog = document.getElementById('categoryLog');
+                var categoryTotal = getCategoryTotal(categoryName);
 
-                // Display category label and update its value
-                categoryDisplay.textContent = categoryInput.value;
-                categoryDisplay.parentElement.style.display = 'block';
+                if (subtractAmount <= categoryTotal) {
+                    // Subtract amount from total
+                    var newCategoryTotal = categoryTotal - subtractAmount;
+                    setCategoryTotal(categoryName, newCategoryTotal);
 
-                // Clear input fields
-                subtractInput.value = '';
-                categoryInput.value = '';
+                    // Log the transaction
+                    var currentDate = new Date();
+                    var transactionEntry = document.createElement('p');
+                    transactionEntry.textContent = `Subtracted ${subtractAmount.toFixed(2)} from Category '${categoryName}' on ${currentDate.toLocaleDateString()} at ${currentDate.toLocaleTimeString()}`;
+                    categoryLog.appendChild(transactionEntry);
 
-                // Hide category label after 5 seconds
-                setTimeout(function() {
-                    categoryDisplay.parentElement.style.display = 'none';
-                }, 5000);
+                    // Update total display
+                    updateTotal(-subtractAmount);
+                } else {
+                    alert('Subtract amount exceeds the category total.');
+                }
             } else {
-                alert('Please enter a valid number for subtraction.');
+                alert('Please enter a valid subtract amount and category name.');
             }
+
+            // Clear the input fields
+            categoryNameInput.value = '';
+            subtractAmountInput.value = '';
+        }
+
+        function getCategoryTotal(categoryName) {
+            var categoryLog = document.getElementById('categoryLog');
+            var categoryElements = categoryLog.getElementsByTagName('p');
+
+            for (var i = 0; i < categoryElements.length; i++) {
+                var entry = categoryElements[i].textContent;
+
+                if (entry.includes(`Category '${categoryName}'`)) {
+                    // Extract total from the log entry
+                    var totalIndex = entry.indexOf('Total: ') + 7;
+                    return parseFloat(entry.substring(totalIndex));
+                }
+            }
+
+            // If category not found, return 0
+            return 0;
+        }
+
+        function setCategoryTotal(categoryName, total) {
+            var categoryLog = document.getElementById('categoryLog');
+            var categoryElements = categoryLog.getElementsByTagName('p');
+
+            for (var i = 0; i < categoryElements.length; i++) {
+                var entry = categoryElements[i].textContent;
+
+                if (entry.includes(`Category '${categoryName}'`)) {
+                    // Replace the total in the log entry
+                    var totalIndex = entry.indexOf('Total: ') + 7;
+                    entry = entry.substring(0, totalIndex) + total.toFixed(2);
+                    categoryElements[i].textContent = entry;
+                    return;
+                }
+            }
+
+            // If category not found, create a new entry
+            var newEntry = document.createElement('p');
+            newEntry.textContent = `Category '${categoryName}' Total: ${total.toFixed(2)}`;
+            categoryLog.appendChild(newEntry);
         }
     </script>
 </body>
 </html>
+
 
 
