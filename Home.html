@@ -86,7 +86,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaction Logger</title>
+    <title>Number Logger</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -97,57 +97,50 @@
             margin: 0;
         }
 
-        #card {
+        #inputCard, #outputCard {
             width: 33.33%;
             box-sizing: border-box;
             background-color: #f0f0f0;
             padding: 20px;
+            margin-right: 10px;
         }
 
         #log {
             text-align: left;
             margin-top: 20px;
         }
-
-        #total {
-            font-size: 24px;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
-    <div id="card">
-        <h1>Transaction Logger</h1>
-
-        <!-- Log Input Section -->
+    <div id="inputCard">
+        <h1>Number Logger</h1>
         <label for="numberInput">Enter a Number:</label>
         <input type="number" id="numberInput">
         <button onclick="logNumber()">Log</button>
 
-        <!-- Subtract Input Section -->
-        <label for="subtractInput">Subtract Amount:</label>
+        <label for="subtractInput">Subtract from Total:</label>
         <input type="number" id="subtractInput">
-
-        <!-- Category Input Section -->
         <label for="categoryInput">Category:</label>
         <input type="text" id="categoryInput">
+        <button onclick="subtractFromTotal()">Subtract and Log</button>
+    </div>
 
-        <!-- Subtract Button -->
-        <button onclick="subtractAndLog()">Subtract and Log</button>
-
-        <!-- Log and Total Section -->
-        <div id="log">
+    <div id="outputCard">
+        <h1>Transaction Output</h1>
+        <div id="outputCategory"></div>
+        <div id="outputLog">
             <h2>Log:</h2>
-            <ul id="logList"></ul>
+            <ul id="outputLogList"></ul>
         </div>
-
-        <div id="total">
+        <div id="outputTotal">
             <h2>Total:</h2>
-            <span id="totalDisplay">0</span>
+            <span id="outputTotalDisplay">0</span>
         </div>
     </div>
 
     <script>
+        var totalAccount = 0;
+
         function logNumber() {
             var numberInput = document.getElementById('numberInput');
             var inputValue = parseFloat(numberInput.value);
@@ -157,10 +150,12 @@
                 var logEntry = document.createElement('li');
                 logEntry.textContent = `Number: ${inputValue}, Date: ${currentDate.toLocaleDateString()}, Time: ${currentDate.toLocaleTimeString()}`;
 
-                var logList = document.getElementById('logList');
+                var logList = document.getElementById('outputLogList');
                 logList.appendChild(logEntry);
 
-                updateTotal(inputValue);
+                totalAccount += inputValue;
+                updateOutputTotal();
+
             } else {
                 alert('Please enter a valid number.');
             }
@@ -169,7 +164,7 @@
             numberInput.value = '';
         }
 
-        function subtractAndLog() {
+        function subtractFromTotal() {
             var subtractInput = document.getElementById('subtractInput');
             var categoryInput = document.getElementById('categoryInput');
             
@@ -178,15 +173,20 @@
 
             if (!isNaN(subtractValue) && categoryName !== '') {
                 var currentDate = new Date();
-                var logEntry = document.createElement('li');
-                logEntry.textContent = `Subtract: ${subtractValue}, Category: ${categoryName}, Date: ${currentDate.toLocaleDateString()}, Time: ${currentDate.toLocaleTimeString()}`;
+                var outputCategory = document.getElementById('outputCategory');
+                outputCategory.textContent = `Category: ${categoryName}`;
 
-                var logList = document.getElementById('logList');
+                var logEntry = document.createElement('li');
+                logEntry.textContent = `Subtracted: ${subtractValue}, Date: ${currentDate.toLocaleDateString()}, Time: ${currentDate.toLocaleTimeString()}`;
+
+                var logList = document.getElementById('outputLogList');
                 logList.appendChild(logEntry);
 
-                updateTotal(-subtractValue);
+                totalAccount -= subtractValue;
+                updateOutputTotal();
+
             } else {
-                alert('Please enter a valid subtract amount and category name.');
+                alert('Please enter a valid subtract value and category.');
             }
 
             // Clear the input fields
@@ -194,11 +194,9 @@
             categoryInput.value = '';
         }
 
-        function updateTotal(number) {
-            var totalDisplay = document.getElementById('totalDisplay');
-            var currentTotal = parseFloat(totalDisplay.textContent);
-            var newTotal = currentTotal + number;
-            totalDisplay.textContent = newTotal.toFixed(2); // Display total with 2 decimal places
+        function updateOutputTotal() {
+            var outputTotalDisplay = document.getElementById('outputTotalDisplay');
+            outputTotalDisplay.textContent = totalAccount.toFixed(2); // Display total with 2 decimal places
         }
     </script>
 </body>
