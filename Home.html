@@ -119,18 +119,23 @@
     <div id="card">
         <h1>Transaction Logger</h1>
 
+        <!-- Log Input Section -->
         <label for="numberInput">Enter a Number:</label>
         <input type="number" id="numberInput">
         <button onclick="logNumber()">Log</button>
 
-        <label for="categoryInput">Enter Category:</label>
-        <input type="text" id="categoryInput">
-        <button onclick="logCategory()">Log Category</button>
-
-        <label for="subtractInput">Subtract from Total:</label>
+        <!-- Subtract Input Section -->
+        <label for="subtractInput">Subtract Amount:</label>
         <input type="number" id="subtractInput">
-        <button onclick="subtractFromTotal()">Subtract</button>
 
+        <!-- Category Input Section -->
+        <label for="categoryInput">Category:</label>
+        <input type="text" id="categoryInput">
+
+        <!-- Subtract Button -->
+        <button onclick="subtractAndLog()">Subtract and Log</button>
+
+        <!-- Log and Total Section -->
         <div id="log">
             <h2>Log:</h2>
             <ul id="logList"></ul>
@@ -140,17 +145,9 @@
             <h2>Total:</h2>
             <span id="totalDisplay">0</span>
         </div>
-
-        <div id="categoryTotal">
-            <h2>Category Total:</h2>
-            <span id="categoryTotalDisplay">0</span>
-        </div>
     </div>
 
     <script>
-        var total = 0;
-        var categoryTotals = {};
-
         function logNumber() {
             var numberInput = document.getElementById('numberInput');
             var inputValue = parseFloat(numberInput.value);
@@ -172,66 +169,36 @@
             numberInput.value = '';
         }
 
-        function logCategory() {
+        function subtractAndLog() {
+            var subtractInput = document.getElementById('subtractInput');
             var categoryInput = document.getElementById('categoryInput');
-            var category = categoryInput.value.trim();
+            
+            var subtractValue = parseFloat(subtractInput.value);
+            var categoryName = categoryInput.value.trim();
 
-            if (category !== "") {
+            if (!isNaN(subtractValue) && categoryName !== '') {
                 var currentDate = new Date();
-                var categoryTotal = categoryTotals[category] || 0;
-
                 var logEntry = document.createElement('li');
-                logEntry.textContent = `Category: ${category}, Total: ${categoryTotal}, Date: ${currentDate.toLocaleDateString()}, Time: ${currentDate.toLocaleTimeString()}`;
+                logEntry.textContent = `Subtract: ${subtractValue}, Category: ${categoryName}, Date: ${currentDate.toLocaleDateString()}, Time: ${currentDate.toLocaleTimeString()}`;
 
                 var logList = document.getElementById('logList');
                 logList.appendChild(logEntry);
 
-                updateCategoryTotal(category, categoryTotal);
+                updateTotal(-subtractValue);
             } else {
-                alert('Please enter a category.');
+                alert('Please enter a valid subtract amount and category name.');
             }
 
-            // Clear the input field
+            // Clear the input fields
+            subtractInput.value = '';
             categoryInput.value = '';
         }
 
-        function subtractFromTotal() {
-            var subtractInput = document.getElementById('subtractInput');
-            var subtractValue = parseFloat(subtractInput.value);
-
-            if (!isNaN(subtractValue)) {
-                var currentDate = new Date();
-                total -= subtractValue;
-
-                var logEntry = document.createElement('li');
-                logEntry.textContent = `Subtract: ${subtractValue}, Date: ${currentDate.toLocaleDateString()}, Time: ${currentDate.toLocaleTimeString()}`;
-
-                var logList = document.getElementById('logList');
-                logList.appendChild(logEntry);
-
-                updateTotalDisplay();
-            } else {
-                alert('Please enter a valid number for subtraction.');
-            }
-
-            // Clear the input field
-            subtractInput.value = '';
-        }
-
-        function updateTotal(value) {
-            total += value;
-            updateTotalDisplay();
-        }
-
-        function updateTotalDisplay() {
+        function updateTotal(number) {
             var totalDisplay = document.getElementById('totalDisplay');
-            totalDisplay.textContent = total.toFixed(2); // Display total with 2 decimal places
-        }
-
-        function updateCategoryTotal(category, categoryTotal) {
-            categoryTotals[category] = categoryTotal + total;
-            var categoryTotalDisplay = document.getElementById('categoryTotalDisplay');
-            categoryTotalDisplay.textContent = categoryTotals[category].toFixed(2); // Display category total with 2 decimal places
+            var currentTotal = parseFloat(totalDisplay.textContent);
+            var newTotal = currentTotal + number;
+            totalDisplay.textContent = newTotal.toFixed(2); // Display total with 2 decimal places
         }
     </script>
 </body>
