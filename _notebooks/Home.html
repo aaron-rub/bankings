@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Input and Line Graph</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 600px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Input and Line Graph</h1>
+    
+    <!-- Input field for a number -->
+    <label for="numberInput">Enter a Number: </label>
+    <input type="number" id="numberInput">
+    <button onclick="recordNumber()">Record Number</button>
+
+    <!-- Canvas for the line graph -->
+    <canvas id="lineChart"></canvas>
+
+    <script>
+        // Arrays to store recorded data
+        var numbers = [];
+        var dates = [];
+
+        // Function to record the number, date, and time
+        function recordNumber() {
+            var numberInput = document.getElementById('numberInput');
+            var number = parseFloat(numberInput.value);
+
+            if (!isNaN(number)) {
+                // Add the number to the array
+                numbers.push(number);
+                
+                // Get the current date and time
+                var currentDate = new Date();
+                dates.push(currentDate.toLocaleString());
+
+                // Clear the input field
+                numberInput.value = '';
+
+                // Check if there are at least two inputs to draw the line graph
+                if (numbers.length >= 2) {
+                    drawLineGraph();
+                }
+            } else {
+                alert('Please enter a valid number.');
+            }
+        }
+
+        // Function to draw the line graph using Chart.js
+        function drawLineGraph() {
+            var ctx = document.getElementById('lineChart').getContext('2d');
+            
+            // Create the chart
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Recorded Numbers',
+                        data: numbers,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom'
+                        },
+                        y: {
+                            min: 0
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
