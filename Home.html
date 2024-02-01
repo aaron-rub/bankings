@@ -3,201 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deposite</title>
+    <title>Banking App</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
-            height: 100vh;
-            margin: 0;
-        }
-
-        #card {
-            width: 50%;
-            box-sizing: border-box;
-            background-color: #f0f0f0;
-            padding: 20px;
-        }
-
-        #log {
-            text-align: left;
-            margin-top: 20px;
-        }
-
-        #total {
-            font-size: 24px;
-            margin-top: 10px;
+        .category-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            display: inline-block;
         }
     </style>
 </head>
 <body>
-    <div id="card">
-        <div id="total">
-            <h2>Total:</h2>
-            <h2 id="totalDisplay">0</h2>
-        </div>
 
-        <h1>Deposite</h1>
-        <label for="numberInput">Enter the amount:</label>
-        <input type="number" id="numberInput">
-        <button onclick="logNumber()">Deposite</button>
+<h1>Banking App</h1>
 
-        <div id="log">
-            <h2>receipts:</h2>
-            <ul id="logList"></ul>
-        </div>
-    </div>
+<!-- Add money to account total -->
+<label for="addMoney">Add Money:</label>
+<input type="number" id="addMoney" placeholder="Enter amount">
+<button onclick="addToTotal()">Add</button>
 
-    <script>
-        function logNumber() {
-            var numberInput = document.getElementById('numberInput');
-            var inputValue = parseFloat(numberInput.value);
+<!-- Create new category and goal -->
+<label for="newCategory">New Category:</label>
+<input type="text" id="newCategory" placeholder="Category Name">
+<input type="number" id="categoryGoal" placeholder="Category Goal">
+<button onclick="createCategory()">Create Category</button>
 
-            if (!isNaN(inputValue)) {
-                var currentDate = new Date();
-                var logEntry = document.createElement('li');
-                logEntry.textContent = `Number: ${inputValue}, Date: ${currentDate.toLocaleDateString()}, Time: ${currentDate.toLocaleTimeString()}`;
+<!-- Transfer money to a category -->
+<label for="selectCategory">Select Category:</label>
+<select id="selectCategory">
+    <!-- Add existing categories dynamically here -->
+</select>
+<input type="number" id="transferAmount" placeholder="Enter amount">
+<button onclick="transferToCategory()">Transfer</button>
 
-                var logList = document.getElementById('logList');
-                logList.appendChild(logEntry);
+<!-- Display category cards -->
+<div id="categoryCards"></div>
 
-                updateTotal(inputValue);
-            } else {
-                alert('Please enter a valid number.');
-            }
+<!-- Transaction log -->
+<h2>Transaction Log</h2>
+<ul id="transactionLog"></ul>
 
-            // Clear the input field
-            numberInput.value = '';
+<script>
+    let total = 0;
+    let categories = [];
+
+    function addToTotal() {
+        const addMoneyInput = document.getElementById('addMoney');
+        const amount = parseFloat(addMoneyInput.value);
+        if (!isNaN(amount)) {
+            total += amount;
+            updateTotal();
+            logTransaction(`Added $${amount} to account total.`);
+        }
+        addMoneyInput.value = '';
+    }
+
+    function createCategory() {
+        const newCategoryInput = document.getElementById('newCategory');
+        const categoryGoalInput = document.getElementById('categoryGoal');
+
+        const categoryName = newCategoryInput.value;
+        const categoryGoal = parseFloat(categoryGoalInput.value);
+
+        if (categoryName && !isNaN(categoryGoal)) {
+            categories.push({ name: categoryName, goal: categoryGoal, balance: 0 });
+            updateCategories();
+            logTransaction(`Created new category '${categoryName}' with a goal of $${categoryGoal}.`);
         }
 
-        function updateTotal(number) {
-            var totalDisplay = document.getElementById('totalDisplay');
-            var currentTotal = parseFloat(totalDisplay.textContent);
-            var newTotal = currentTotal + number;
-            totalDisplay.textContent = newTotal.toFixed(2); // Display total with 2 decimal places
-        }
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Logger</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
-            height: 100vh;
-            margin: 0;
+        newCategoryInput.value = '';
+        categoryGoalInput.value = '';
+    }
+
+    function transferToCategory() {
+        const selectCategory = document.getElementById('selectCategory');
+        const transferAmountInput = document.getElementById('transferAmount');
+
+        const categoryName = selectCategory.value;
+        const transferAmount = parseFloat(transferAmountInput.value);
+
+        const category = categories.find(c => c.name === categoryName);
+
+        if (category && !isNaN(transferAmount) && transferAmount <= total) {
+            category.balance += transferAmount;
+            total -= transferAmount;
+            updateTotal();
+            updateCategories();
+            logTransaction(`Transferred $${transferAmount} to category '${categoryName}'.`);
         }
 
-        #inputCard, #outputCard {
-            width: 33.33%;
-            box-sizing: border-box;
-            background-color: #f0f0f0;
-            padding: 20px;
-            margin-right: 10px;
-        }
+        transferAmountInput.value = '';
+    }
 
-        #log {
-            text-align: left;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div id="inputCard">
-        <h1>Number Logger</h1>
-        <label for="numberInput">Enter a Number:</label>
-        <input type="number" id="numberInput">
-        <button onclick="logNumber()">Log</button>
+    function updateTotal() {
+        // Update total display
+        document.getElementById('totalDisplay').innerText = `$${total.toFixed(2)}`;
+    }
 
-        <label for="subtractInput">Subtract from Total:</label>
-        <input type="number" id="subtractInput">
-        <label for="categoryInput">Category:</label>
-        <input type="text" id="categoryInput">
-        <button onclick="subtractFromTotal()">Subtract and Log</button>
-    </div>
+    function updateCategories() {
+        const categoryCards = document.getElementById('categoryCards');
+        categoryCards.innerHTML = '';
 
-    <div id="outputCard">
-        <h1>Transaction Output</h1>
-        <div id="outputCategory"></div>
-        <div id="outputLog">
-            <h2>Log:</h2>
-            <ul id="outputLogList"></ul>
-        </div>
-        <div id="outputTotal">
-            <h2>Total:</h2>
-            <span id="outputTotalDisplay">0</span>
-        </div>
-    </div>
+        categories.forEach(category => {
+            const card = document.createElement('div');
+            card.classList.add('category-card');
+            card.innerHTML = `<h3>${category.name}</h3>
+                             <p>Goal: $${category.goal}</p>
+                             <p>Balance: $${category.balance}</p>
+                             <p>Goal Progress: ${((category.balance / category.goal) * 100).toFixed(2)}%</p>`;
+            categoryCards.appendChild(card);
+        });
 
-    <script>
-        var totalAccount = 0;
+        // Update select options for transferring money
+        const selectCategory = document.getElementById('selectCategory');
+        selectCategory.innerHTML = '';
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.name;
+            option.textContent = category.name;
+            selectCategory.appendChild(option);
+        });
+    }
 
-        function logNumber() {
-            var numberInput = document.getElementById('numberInput');
-            var inputValue = parseFloat(numberInput.value);
+    function logTransaction(message) {
+        const transactionLog = document.getElementById('transactionLog');
+        const listItem = document.createElement('li');
+        listItem.innerText = `${getCurrentDateTime()} - ${message}`;
+        transactionLog.appendChild(listItem);
+    }
 
-            if (!isNaN(inputValue)) {
-                var currentDate = new Date();
-                var logEntry = document.createElement('li');
-                logEntry.textContent = `Number: ${inputValue}, Date: ${currentDate.toLocaleDateString()}, Time: ${currentDate.toLocaleTimeString()}`;
+    function getCurrentDateTime() {
+        const now = new Date();
+        return `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+    }
+</script>
 
-                var logList = document.getElementById('outputLogList');
-                logList.appendChild(logEntry);
-
-                totalAccount += inputValue;
-                updateOutputTotal();
-
-            } else {
-                alert('Please enter a valid number.');
-            }
-
-            // Clear the input field
-            numberInput.value = '';
-        }
-
-        function subtractFromTotal() {
-            var subtractInput = document.getElementById('subtractInput');
-            var categoryInput = document.getElementById('categoryInput');
-            
-            var subtractValue = parseFloat(subtractInput.value);
-            var categoryName = categoryInput.value.trim();
-
-            if (!isNaN(subtractValue) && categoryName !== '') {
-                var currentDate = new Date();
-                var outputCategory = document.getElementById('outputCategory');
-                outputCategory.textContent = `Category: ${categoryName}`;
-
-                var logEntry = document.createElement('li');
-                logEntry.textContent = `Subtracted: ${subtractValue}, Date: ${currentDate.toLocaleDateString()}, Time: ${currentDate.toLocaleTimeString()}`;
-
-                var logList = document.getElementById('outputLogList');
-                logList.appendChild(logEntry);
-
-                totalAccount -= subtractValue;
-                updateOutputTotal();
-
-            } else {
-                alert('Please enter a valid subtract value and category.');
-            }
-
-            // Clear the input fields
-            subtractInput.value = '';
-            categoryInput.value = '';
-        }
-
-        function updateOutputTotal() {
-            var outputTotalDisplay = document.getElementById('outputTotalDisplay');
-            outputTotalDisplay.textContent = totalAccount.toFixed(2); // Display total with 2 decimal places
-        }
-    </script>
 </body>
 </html>
