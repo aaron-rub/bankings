@@ -7,8 +7,18 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #card {
+            width: 33.33%;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+            padding: 20px;
         }
 
         #log {
@@ -23,19 +33,21 @@
     </style>
 </head>
 <body>
-    <h1>Number Logger</h1>
-    <label for="numberInput">Enter a Number:</label>
-    <input type="number" id="numberInput">
-    <button onclick="logNumber()">Log</button>
+    <div id="card">
+        <h1>Number Logger</h1>
+        <label for="numberInput">Enter a Number:</label>
+        <input type="number" id="numberInput">
+        <button onclick="logNumber()">Log</button>
 
-    <div id="log">
-        <h2>Log:</h2>
-        <ul id="logList"></ul>
-    </div>
+        <div id="log">
+            <h2>Log:</h2>
+            <ul id="logList"></ul>
+        </div>
 
-    <div id="total">
-        <h2>Total:</h2>
-        <span id="totalDisplay">0</span>
+        <div id="total">
+            <h2>Total:</h2>
+            <span id="totalDisplay">0</span>
+        </div>
     </div>
 
     <script>
