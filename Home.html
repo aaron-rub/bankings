@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Banking App</title>
-  <!-- Include Chart.js library -->
+  <!-- Add Chart.js library -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     /* Add your CSS styles here */
@@ -45,13 +45,12 @@
     <!-- Transaction log will be added here -->
   </div>
 
-  <!-- Add canvas for the chart -->
-  <canvas id="myLineChart" width="400" height="200"></canvas>
+  <!-- Add canvas for the bar chart -->
+  <canvas id="categoryChart" width="400" height="200"></canvas>
 
   <script>
     let accountTotal = 0;
     let categories = [];
-    let chart;
 
     function addToAccount() {
       const addAmount = parseFloat(document.getElementById('addAmount').value);
@@ -59,7 +58,7 @@
         accountTotal += addAmount;
         document.getElementById('accountTotal').innerText = accountTotal.toFixed(2);
         logTransaction(`Added $${addAmount} to account total.`);
-        updateChart();
+        updateCategoryChart();
       }
     }
 
@@ -70,7 +69,7 @@
         categories.push({ name: newCategory, goal: categoryGoal, balance: 0 });
         updateCategoryList();
         logTransaction(`Created category "${newCategory}" with a goal of $${categoryGoal}.`);
-        updateChart();
+        updateCategoryChart();
       }
     }
 
@@ -107,7 +106,7 @@
           document.getElementById('accountTotal').innerText = accountTotal.toFixed(2);
           updateCategoryList();
           logTransaction(`Transferred $${categoryAmount} from account to category "${selectedCategory}".`);
-          updateChart();
+          updateCategoryChart();
         }
       }
     }
@@ -119,39 +118,31 @@
       logElement.appendChild(logEntry);
     }
 
-    function updateChart() {
-      if (!chart) {
-        const ctx = document.getElementById('myLineChart').getContext('2d');
-        chart = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: [],
-            datasets: [{
-              label: 'Account Total Over Time',
-              data: [],
-              borderColor: 'blue',
-              fill: false,
-            }],
-          },
-          options: {
-            scales: {
-              x: {
-                type: 'linear',
-                position: 'bottom',
-              },
-              y: {
-                type: 'linear',
-                position: 'left',
-              },
-            },
-          },
-        });
-      }
+    function updateCategoryChart() {
+      const labels = categories.map(category => category.name);
+      const data = categories.map(category => category.balance);
 
-      // Update chart data
-      chart.data.labels = categories.map(category => category.name);
-      chart.data.datasets[0].data = categories.map(category => category.balance);
-      chart.update();
+      const ctx = document.getElementById('categoryChart').getContext('2d');
+      const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Category Balance',
+            data: data,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
     }
   </script>
 
