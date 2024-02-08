@@ -1,4 +1,4 @@
-# Runtime Link
+# Web Link
 [https://aaron-rub.github.io/bankings/](https://aaron-rub.github.io/bankings/)
 
 # IMPORTANT
