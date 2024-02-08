@@ -113,86 +113,66 @@
 
 </body>
 </html>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Point Plotter</title>
-  <!-- Include Chart.js library -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Point Plotter</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
 </head>
 <body>
+    <h1>Point Plotter</h1>
+    <label for="pointInput">Enter Points (comma-separated): </label>
+    <input type="text" id="pointInput">
+    <button onclick="plotPoints()">Plot</button>
 
-<!-- Input for X and Y values -->
-<label for="xValue">X Value:</label>
-<input type="number" id="xValue" placeholder="Enter X value">
+    <canvas id="plotCanvas" width="400" height="200"></canvas>
 
-<label for="yValue">Y Value:</label>
-<input type="number" id="yValue" placeholder="Enter Y value">
+    <script>
+        function plotPoints() {
+            // Get the input value and split into an array
+            const inputElement = document.getElementById("pointInput");
+            const pointsString = inputElement.value;
+            const pointsArray = pointsString.split(",");
 
-<!-- Button to add point -->
-<button onclick="addPoint()">Add Point</button>
+            // Get the canvas element and its 2d context
+            const canvas = document.getElementById("plotCanvas");
+            const ctx = canvas.getContext("2d");
 
-<!-- Canvas to draw the graph -->
-<canvas id="myChart" width="400" height="400"></canvas>
+            // Clear previous drawings
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-<script>
-  // Arrays to store X and Y values
-  var xValues = [];
-  var yValues = [];
+            // Set up initial point
+            let x = 10;
+            let y = parseFloat(pointsArray[0]) + 50;
 
-  // Function to add a point to the arrays and update the chart
-  function addPoint() {
-    var xInput = document.getElementById('xValue');
-    var yInput = document.getElementById('yValue');
+            // Draw the initial point
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, 2 * Math.PI);
+            ctx.fill();
 
-    // Get the values from the inputs
-    var x = parseFloat(xInput.value);
-    var y = parseFloat(yInput.value);
+            // Draw lines connecting points
+            ctx.beginPath();
+            ctx.moveTo(x, y);
 
-    // Add the point to the arrays
-    xValues.push(x);
-    yValues.push(y);
+            for (let i = 1; i < pointsArray.length; i++) {
+                x += 50; // Increase x for the next point
+                y = parseFloat(pointsArray[i]) + 50;
+                ctx.lineTo(x, y);
+                ctx.arc(x, y, 5, 0, 2 * Math.PI);
+                ctx.fill();
+            }
 
-    // Update the chart
-    updateChart();
-
-    // Clear the input fields
-    xInput.value = '';
-    yInput.value = '';
-  }
-
-  // Function to update the chart
-  function updateChart() {
-    var ctx = document.getElementById('myChart').getContext('2d');
-
-    // Create a scatter plot
-    var scatterChart = new Chart(ctx, {
-      type: 'scatter',
-      data: {
-        datasets: [{
-          label: 'Points',
-          data: xValues.map((x, index) => ({x: x, y: yValues[index]})),
-          pointBackgroundColor: 'blue'
-        }]
-      },
-      options: {
-        scales: {
-          x: {
-            type: 'linear',
-            position: 'bottom'
-          },
-          y: {
-            type: 'linear',
-            position: 'left'
-          }
+            ctx.stroke();
         }
-      }
-    });
-  }
-</script>
-
+    </script>
 </body>
 </html>
-
