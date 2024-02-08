@@ -53,6 +53,16 @@
         accountTotal += addAmount;
         document.getElementById('accountTotal').innerText = accountTotal.toFixed(2);
         logTransaction(`Added $${addAmount} to account total.`);
+        const xValue = parseInt(document.getElementById('x').value);
+    const yValue = parseInt(document.getElementById('addAmount').value);
+
+    points.push({ x: xValue, y: yValue });
+
+    updateChart();
+    updatePointsList();
+
+    document.getElementById('x').value = xValue + 1;
+    document.getElementById('addAmount').value = '';
       }
     }
 
