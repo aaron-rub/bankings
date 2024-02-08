@@ -54,6 +54,24 @@
         document.getElementById('accountTotal').innerText = accountTotal.toFixed(2);
         logTransaction(`Added $${addAmount} to account total.`);
       }
+          // Get current x and y values
+    const xValue = document.getElementById('x').value;
+    const yValue = document.getElementById('addAmount').value;
+
+    // Display the point
+    const pointsList = document.getElementById('pointsList');
+    const li = document.createElement('li');
+    li.textContent = `Point (${xValue}, ${yValue})`;
+    pointsList.appendChild(li);
+
+    // Increment x value for the next point
+    document.getElementById('x').value = parseInt(xValue) + 1;
+
+    // Clear the y value for the next input
+    document.getElementById('addAmount').value = '';
+
+    // Optionally, you can perform additional actions with the entered values
+    // For example, you can send the values to a server, perform calculations, etc.
     }
 
     function addCategory() {
