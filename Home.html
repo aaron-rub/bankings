@@ -113,3 +113,86 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Point Plotter</title>
+  <!-- Include Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- Input for X and Y values -->
+<label for="xValue">X Value:</label>
+<input type="number" id="xValue" placeholder="Enter X value">
+
+<label for="yValue">Y Value:</label>
+<input type="number" id="yValue" placeholder="Enter Y value">
+
+<!-- Button to add point -->
+<button onclick="addPoint()">Add Point</button>
+
+<!-- Canvas to draw the graph -->
+<canvas id="myChart" width="400" height="400"></canvas>
+
+<script>
+  // Arrays to store X and Y values
+  var xValues = [];
+  var yValues = [];
+
+  // Function to add a point to the arrays and update the chart
+  function addPoint() {
+    var xInput = document.getElementById('xValue');
+    var yInput = document.getElementById('yValue');
+
+    // Get the values from the inputs
+    var x = parseFloat(xInput.value);
+    var y = parseFloat(yInput.value);
+
+    // Add the point to the arrays
+    xValues.push(x);
+    yValues.push(y);
+
+    // Update the chart
+    updateChart();
+
+    // Clear the input fields
+    xInput.value = '';
+    yInput.value = '';
+  }
+
+  // Function to update the chart
+  function updateChart() {
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    // Create a scatter plot
+    var scatterChart = new Chart(ctx, {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Points',
+          data: xValues.map((x, index) => ({x: x, y: yValues[index]})),
+          pointBackgroundColor: 'blue'
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            type: 'linear',
+            position: 'bottom'
+          },
+          y: {
+            type: 'linear',
+            position: 'left'
+          }
+        }
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
+
