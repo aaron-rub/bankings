@@ -169,3 +169,98 @@
 
 </body>
 </html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Point Input and Graph</title>
+  <!-- Include Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<h2>Enter Points</h2>
+
+<form id="pointForm">
+  <label for="x">X Value:</label>
+  <input type="text" id="x" value="0" readonly>
+
+  <label for="y">Y Value:</label>
+  <input type="number" id="y" required>
+
+  <button type="button" onclick="addPoint()">Add Point</button>
+</form>
+
+<!-- Displayed Points -->
+<div id="displayPoints">
+  <h3>Entered Points:</h3>
+  <ul id="pointsList"></ul>
+</div>
+
+<!-- Chart -->
+<canvas id="pointChart" width="400" height="200"></canvas>
+
+<script>
+  const points = [];
+
+  function addPoint() {
+    const xValue = parseInt(document.getElementById('x').value);
+    const yValue = parseInt(document.getElementById('y').value);
+
+    points.push({ x: xValue, y: yValue });
+
+    updateChart();
+    updatePointsList();
+
+    document.getElementById('x').value = xValue + 1;
+    document.getElementById('y').value = '';
+  }
+
+  function updateChart() {
+    const ctx = document.getElementById('pointChart').getContext('2d');
+
+    // Destroy existing chart to avoid duplicating
+    if (window.myChart) {
+      window.myChart.destroy();
+    }
+
+    window.myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: points.map(point => point.x),
+        datasets: [{
+          label: 'Points',
+          borderColor: 'rgb(75, 192, 192)',
+          data: points,
+          fill: false,
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            type: 'linear',
+            position: 'bottom'
+          },
+          y: {
+            min: 0
+          }
+        }
+      }
+    });
+  }
+
+  function updatePointsList() {
+    const pointsList = document.getElementById('pointsList');
+    const li = document.createElement('li');
+    li.textContent = `Point (${points[points.length - 1].x}, ${points[points.length - 1].y})`;
+    pointsList.appendChild(li);
+  }
+</script>
+
+</body>
+</html>
+
