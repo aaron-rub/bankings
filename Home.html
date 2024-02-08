@@ -166,17 +166,6 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Point Input</title>
-</head>
-<body>
-
-<h2>Enter Points</h2>
-
 <form id="pointForm">
   <!-- Initial x value is 0 -->
   <label for="x">X Value:</label>
@@ -184,37 +173,6 @@
 
   <button type="button" onclick="addPoint()">Add Point</button>
 </form>
-
-<!-- Displayed Points -->
-<div id="displayPoints">
-  <h3>Entered Points:</h3>
-  <ul id="pointsList"></ul>
-</div>
-
-<script>
-  function addPoint() {
-    // Get current x and y values
-    const xValue = document.getElementById('x').value;
-    const yValue = document.getElementById('addAmount').value;
-
-    // Display the point
-    const pointsList = document.getElementById('pointsList');
-    const li = document.createElement('li');
-    li.textContent = `Point (${xValue}, ${yValue})`;
-    pointsList.appendChild(li);
-
-    // Increment x value for the next point
-    document.getElementById('x').value = parseInt(xValue) + 1;
-
-    // Clear the y value for the next input
-    document.getElementById('addAmount').value = '';
-
-    // Optionally, you can perform additional actions with the entered values
-    // For example, you can send the values to a server, perform calculations, etc.
-  }
-</script>
-
-</body>
 
 <head>
   <meta charset="UTF-8">
