@@ -119,60 +119,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Point Plotter</title>
-    <style>
-        canvas {
-            border: 1px solid #000;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Point Input</title>
 </head>
 <body>
-    <h1>Point Plotter</h1>
-    <label for="pointInput">Enter Points (comma-separated): </label>
-    <input type="text" id="pointInput">
-    <button onclick="plotPoints()">Plot</button>
 
-    <canvas id="plotCanvas" width="400" height="200"></canvas>
+<h2>Enter Points</h2>
 
-    <script>
-        function plotPoints() {
-            // Get the input value and split into an array
-            const inputElement = document.getElementById("pointInput");
-            const pointsString = inputElement.value;
-            const pointsArray = pointsString.split(",");
+<form id="pointForm">
+  <!-- Initial x value is 0 -->
+  <label for="x">X Value:</label>
+  <input type="text" id="x" value="0" readonly>
 
-            // Get the canvas element and its 2d context
-            const canvas = document.getElementById("plotCanvas");
-            const ctx = canvas.getContext("2d");
+  <label for="y">Y Value:</label>
+  <input type="number" id="y" required>
 
-            // Clear previous drawings
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+  <button type="button" onclick="addPoint()">Add Point</button>
+</form>
 
-            // Set up initial point
-            let x = 10;
-            let y = parseFloat(pointsArray[0]) + 50;
+<!-- Displayed Points -->
+<div id="displayPoints">
+  <h3>Entered Points:</h3>
+  <ul id="pointsList"></ul>
+</div>
 
-            // Draw the initial point
-            ctx.beginPath();
-            ctx.arc(x, y, 5, 0, 2 * Math.PI);
-            ctx.fill();
+<script>
+  function addPoint() {
+    // Get current x and y values
+    const xValue = document.getElementById('x').value;
+    const yValue = document.getElementById('y').value;
 
-            // Draw lines connecting points
-            ctx.beginPath();
-            ctx.moveTo(x, y);
+    // Display the point
+    const pointsList = document.getElementById('pointsList');
+    const li = document.createElement('li');
+    li.textContent = `Point (${xValue}, ${yValue})`;
+    pointsList.appendChild(li);
 
-            for (let i = 1; i < pointsArray.length; i++) {
-                x += 50; // Increase x for the next point
-                y = parseFloat(pointsArray[i]) + 50;
-                ctx.lineTo(x, y);
-                ctx.arc(x, y, 5, 0, 2 * Math.PI);
-                ctx.fill();
-            }
+    // Increment x value for the next point
+    document.getElementById('x').value = parseInt(xValue) + 1;
 
-            ctx.stroke();
-        }
-    </script>
+    // Clear the y value for the next input
+    document.getElementById('y').value = '';
+
+    // Optionally, you can perform additional actions with the entered values
+    // For example, you can send the values to a server, perform calculations, etc.
+  }
+</script>
+
 </body>
 </html>
