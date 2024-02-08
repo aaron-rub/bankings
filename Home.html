@@ -54,24 +54,56 @@
         document.getElementById('accountTotal').innerText = accountTotal.toFixed(2);
         logTransaction(`Added $${addAmount} to account total.`);
       }
-          // Get current x and y values
-    const xValue = document.getElementById('x').value;
-    const yValue = document.getElementById('addAmount').value;
+      const xValue = parseInt(document.getElementById('x').value);
+    const yValue = parseInt(document.getElementById('addAmount').value);
 
-    // Display the point
+    points.push({ x: xValue, y: yValue });
+
+    updateChart();
+    updatePointsList();
+
+    document.getElementById('x').value = xValue + 1;
+    document.getElementById('addAmount').value = '';
+  }
+
+  function updateChart() {
+    const ctx = document.getElementById('pointChart').getContext('2d');
+
+    // Destroy existing chart to avoid duplicating
+    if (window.myChart) {
+      window.myChart.destroy();
+    }
+
+    window.myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: points.map(point => point.x),
+        datasets: [{
+          label: 'Points',
+          borderColor: 'rgb(75, 192, 192)',
+          data: points,
+          fill: false,
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            type: 'linear',
+            position: 'bottom'
+          },
+          y: {
+            min: 0
+          }
+        }
+      }
+    });
+  }
+
+  function updatePointsList() {
     const pointsList = document.getElementById('pointsList');
     const li = document.createElement('li');
-    li.textContent = `Point (${xValue}, ${yValue})`;
+    li.textContent = `Point (${points[points.length - 1].x}, ${points[points.length - 1].y})`;
     pointsList.appendChild(li);
-
-    // Increment x value for the next point
-    document.getElementById('x').value = parseInt(xValue) + 1;
-
-    // Clear the y value for the next input
-    document.getElementById('addAmount').value = '';
-
-    // Optionally, you can perform additional actions with the entered values
-    // For example, you can send the values to a server, perform calculations, etc.
     }
 
     function addCategory() {
@@ -207,7 +239,7 @@
 
   function addPoint() {
     const xValue = parseInt(document.getElementById('x').value);
-    const yValue = parseInt(document.getElementById('y').value);
+    const yValue = parseInt(document.getElementById('addAmount').value);
 
     points.push({ x: xValue, y: yValue });
 
@@ -215,7 +247,7 @@
     updatePointsList();
 
     document.getElementById('x').value = xValue + 1;
-    document.getElementById('y').value = '';
+    document.getElementById('addAmount').value = '';
   }
 
   function updateChart() {
