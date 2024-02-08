@@ -13,10 +13,11 @@
   <h1>Banking App</h1>
 
 
-  <h2>Daily Income Form</h2>
 <form action="http://localhost:8085/api/income" method="post">
-  <label for="income">Daily Income:</label><br>
-  <input type="number" id="income" name="income" value=""><br>
+  <p>Account Total: $<span id="accountTotal">0</span></p>
+  <label for="income">Add Amount: $</label><br>
+  <input type="number" id="addAmount" name="addAmount" value=""><br>
+  <button onclick="addToAccount()">Add</button>
   <input type="submit" value="Submit">
 </form>
 
