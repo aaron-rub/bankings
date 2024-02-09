@@ -48,6 +48,11 @@
     <!-- Transaction log will be added here -->
   </div>
 
+  <!-- Display Chart for Account Total -->
+  <div id="accountChartContainer">
+    <canvas id="accountChart" width="400" height="200"></canvas>
+  </div>
+
   <!-- Display Chart for Each Category -->
   <div id="categoryCharts">
     <!-- Category charts will be added here -->
@@ -57,11 +62,38 @@
     let accountTotal = 0;
     let categories = [];
 
+    // Initialize the chart for account total
+    const accountCtx = document.getElementById('accountChart').getContext('2d');
+    const accountChart = new Chart(accountCtx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          label: 'Account Total',
+          borderColor: 'rgb(255, 99, 132)',
+          data: [],
+          fill: false,
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            type: 'linear',
+            position: 'bottom'
+          },
+          y: {
+            min: 0
+          }
+        }
+      }
+    });
+
     function addToAccount() {
       const addAmount = parseFloat(document.getElementById('addAmount').value);
       if (!isNaN(addAmount)) {
         accountTotal += addAmount;
         document.getElementById('accountTotal').innerText = accountTotal.toFixed(2);
+        updateAccountChart(); // Update the account total chart
         logTransaction(`Added $${addAmount} to account total.`);
       }
     }
@@ -103,8 +135,8 @@
       const chartContainer = document.getElementById('categoryCharts');
       const canvas = document.createElement('canvas');
       canvas.id = `chart-${categoryName}`;
-      canvas.width = 200;
-      canvas.height = 100;
+      canvas.width = 400;
+      canvas.height = 200;
       chartContainer.appendChild(canvas);
 
       const ctx = canvas.getContext('2d');
@@ -137,6 +169,17 @@
       category.chart = chart;
     }
 
+    function updateAccountChart() {
+      // Update account total chart
+      const accountData = accountChart.data.datasets[0].data;
+      const accountLabels = Array.from({ length: accountData.length + 1 }, (_, i) => i + 1);
+
+      accountData.push(accountTotal);
+
+      accountChart.data.labels = accountLabels;
+      accountChart.update();
+    }
+
     function updateCategoryBalance() {
       const selectedCategory = document.getElementById('existingCategories').value;
       const categoryAmount = parseFloat(document.getElementById('categoryAmount').value);
@@ -148,6 +191,7 @@
           document.getElementById('accountTotal').innerText = accountTotal.toFixed(2);
           updateCategoryList();
           updateChart(category); // Update the corresponding chart for the category
+          updateAccountChart(); // Update the account total chart
           logTransaction(`Transferred $${categoryAmount} from account to category "${selectedCategory}".`);
         }
       }
