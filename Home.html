@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,11 @@
   <style>
     /* Add your CSS styles here */
   </style>
+
+  <!-- Include Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
   <h1>Banking App</h1>
@@ -43,6 +48,11 @@
     <!-- Transaction log will be added here -->
   </div>
 
+  <!-- Display Chart for Each Category -->
+  <div id="categoryCharts">
+    <!-- Category charts will be added here -->
+  </div>
+
   <script>
     let accountTotal = 0;
     let categories = [];
@@ -54,56 +64,6 @@
         document.getElementById('accountTotal').innerText = accountTotal.toFixed(2);
         logTransaction(`Added $${addAmount} to account total.`);
       }
-      const xValue = parseInt(document.getElementById('x').value);
-    const yValue = parseInt(document.getElementById('addAmount').value);
-
-    points.push({ x: xValue, y: yValue });
-
-    updateChart();
-    updatePointsList();
-
-    document.getElementById('x').value = xValue + 1;
-    document.getElementById('addAmount').value = '';
-  }
-
-  function updateChart() {
-    const ctx = document.getElementById('pointChart').getContext('2d');
-
-    // Destroy existing chart to avoid duplicating
-    if (window.myChart) {
-      window.myChart.destroy();
-    }
-
-    window.myChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: points.map(point => point.x),
-        datasets: [{
-          label: 'Points',
-          borderColor: 'rgb(75, 192, 192)',
-          data: points,
-          fill: false,
-        }]
-      },
-      options: {
-        scales: {
-          x: {
-            type: 'linear',
-            position: 'bottom'
-          },
-          y: {
-            min: 0
-          }
-        }
-      }
-    });
-  }
-
-  function updatePointsList() {
-    const pointsList = document.getElementById('pointsList');
-    const li = document.createElement('li');
-    li.textContent = `Point (${points[points.length - 1].x}, ${points[points.length - 1].y})`;
-    pointsList.appendChild(li);
     }
 
     function addCategory() {
@@ -112,6 +72,7 @@
       if (newCategory && !isNaN(categoryGoal)) {
         categories.push({ name: newCategory, goal: categoryGoal, balance: 0 });
         updateCategoryList();
+        createCategoryChart(newCategory); // Create a chart for the new category
         logTransaction(`Created category "${newCategory}" with a goal of $${categoryGoal}.`);
       }
     }
@@ -138,6 +99,44 @@
       }
     }
 
+    function createCategoryChart(categoryName) {
+      const chartContainer = document.getElementById('categoryCharts');
+      const canvas = document.createElement('canvas');
+      canvas.id = `chart-${categoryName}`;
+      canvas.width = 400;
+      canvas.height = 200;
+      chartContainer.appendChild(canvas);
+
+      const ctx = canvas.getContext('2d');
+      const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [{
+            label: `${categoryName} Balance`,
+            borderColor: getRandomColor(),
+            data: [],
+            fill: false,
+          }]
+        },
+        options: {
+          scales: {
+            x: {
+              type: 'linear',
+              position: 'bottom'
+            },
+            y: {
+              min: 0
+            }
+          }
+        }
+      });
+
+      // Save the chart instance in the categories array
+      const category = categories.find(cat => cat.name === categoryName);
+      category.chart = chart;
+    }
+
     function updateCategoryBalance() {
       const selectedCategory = document.getElementById('existingCategories').value;
       const categoryAmount = parseFloat(document.getElementById('categoryAmount').value);
@@ -148,9 +147,52 @@
           accountTotal -= categoryAmount;
           document.getElementById('accountTotal').innerText = accountTotal.toFixed(2);
           updateCategoryList();
+          updateChart(category); // Update the corresponding chart for the category
           logTransaction(`Transferred $${categoryAmount} from account to category "${selectedCategory}".`);
         }
       }
+    }
+
+    function updateChart(category) {
+      const ctx = category.chart.ctx;
+
+      // Destroy existing chart to avoid duplicating
+      if (category.chart) {
+        category.chart.destroy();
+      }
+
+      category.chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: Array.from({ length: category.chart.data.labels.length + 1 }, (_, i) => i + 1),
+          datasets: [{
+            label: `${category.name} Balance`,
+            borderColor: getRandomColor(),
+            data: category.chart.data.datasets[0].data.concat(category.balance),
+            fill: false,
+          }]
+        },
+        options: {
+          scales: {
+            x: {
+              type: 'linear',
+              position: 'bottom'
+            },
+            y: {
+              min: 0
+            }
+          }
+        }
+      });
+    }
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
     }
 
     function logTransaction(message) {
@@ -162,93 +204,5 @@
   </script>
 
 </body>
+
 </html>
-
-
-
-<form id="pointForm">
-  <!-- Initial x value is 0 -->
-  <label for="x"></label>
-  <input type="hidden" id="x" value="0" readonly>
-
-  <button type="button" onclick="addPoint()">Add Point</button>
-</form>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Point Input and Graph</title>
-  <!-- Include Chart.js library -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-
-<!-- Displayed Points -->
-<div id="displayPoints">
-  <h3></h3>
-  <ul id="pointsList"></ul>
-</div>
-
-<!-- Chart -->
-<canvas id="pointChart" width="400" height="200"></canvas>
-
-<script>
-  const points = [];
-
-  function addPoint() {
-    const xValue = parseInt(document.getElementById('x').value);
-    const yValue = parseInt(document.getElementById('addAmount').value);
-
-    points.push({ x: xValue, y: yValue });
-
-    updateChart();
-    updatePointsList();
-
-    document.getElementById('x').value = xValue + 1;
-    document.getElementById('addAmount').value = '';
-  }
-
-  function updateChart() {
-    const ctx = document.getElementById('pointChart').getContext('2d');
-
-    // Destroy existing chart to avoid duplicating
-    if (window.myChart) {
-      window.myChart.destroy();
-    }
-
-    window.myChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: points.map(point => point.x),
-        datasets: [{
-          label: 'Points',
-          borderColor: 'rgb(75, 192, 192)',
-          data: points,
-          fill: false,
-        }]
-      },
-      options: {
-        scales: {
-          x: {
-            type: 'linear',
-            position: 'bottom'
-          },
-          y: {
-            min: 0
-          }
-        }
-      }
-    });
-  }
-
-  function updatePointsList() {
-    const pointsList = document.getElementById('pointsList');
-    const li = document.createElement('li');
-    li.textContent = `Point (${points[points.length - 1].x}, ${points[points.length - 1].y})`;
-    pointsList.appendChild(li);
-  }
-</script>
-
-</body>
-</html>
-
