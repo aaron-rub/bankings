@@ -245,7 +245,72 @@
       logEntry.innerText = `${new Date().toLocaleString()} - ${message}`;
       logElement.appendChild(logEntry);
     }
-  </script>
+
+  function createCategoryChart(categoryName) {
+    const chartContainer = document.getElementById('categoryCharts');
+    const canvas = document.createElement('canvas');
+    canvas.id = `chart-${categoryName}`;
+    canvas.width = 400;
+    canvas.height = 200;
+    chartContainer.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    const category = categories.find(cat => cat.name === categoryName);
+
+    // Calculate the y-value for the category goal
+    const goalYValue = category.goal;
+
+    const chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          label: `${categoryName} Balance`,
+          borderColor: getRandomColor(),
+          data: [],
+          fill: false,
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            type: 'linear',
+            position: 'bottom'
+          },
+          y: {
+            min: 0,
+            ticks: {
+              callback: function (value) {
+                // Format y-axis ticks, add $ symbol
+                return '$' + value;
+              }
+            }
+          }
+        },
+        annotation: {
+          annotations: [{
+            type: 'line',
+            mode: 'horizontal',
+            scaleID: 'y',
+            value: goalYValue,
+            borderColor: 'rgb(255, 255, 0)', // Yellow color
+            borderWidth: 2,
+            label: {
+              content: `Goal: $${goalYValue}`,
+              enabled: true,
+              position: 'left',
+            }
+          }]
+        }
+      }
+    });
+
+    // Save the chart instance in the categories array
+    category.chart = chart;
+  }
+
+  // ... (previous code) ...
+</script>
 
 </body>
 
