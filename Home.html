@@ -220,3 +220,284 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111" />
+
+
+
+  
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+
+  <title>CodePen - Accordion Menu</title>
+
+    <link rel="canonical" href="https://codepen.io/maggiben/pen/bGpzPj">
+  
+  
+  <link rel='stylesheet' href='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+  
+<style>
+@import url('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-stretch: normal;
+  src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsiH0B4gaVc.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVc.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+  src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1x4gaVc.ttf) format('truetype');
+}
+body {
+  color: #5D5F63;
+  background: #293949;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+.sidebar-toggle {
+  margin-left: -240px;
+}
+.sidebar {
+  width: 240px;
+  height: 100%;
+  background: #293949;
+  position: absolute;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  z-index: 100;
+}
+.sidebar #leftside-navigation ul,
+.sidebar #leftside-navigation ul ul {
+  margin: -2px 0 0;
+  padding: 0;
+}
+.sidebar #leftside-navigation ul li {
+  list-style-type: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.sidebar #leftside-navigation ul li.active > a {
+  color: #1abc9c;
+}
+.sidebar #leftside-navigation ul li.active ul {
+  display: block;
+}
+.sidebar #leftside-navigation ul li a {
+  color: #aeb2b7;
+  text-decoration: none;
+  display: block;
+  padding: 18px 0 18px 25px;
+  font-size: 12px;
+  outline: 0;
+  -webkit-transition: all 200ms ease-in;
+  -moz-transition: all 200ms ease-in;
+  -o-transition: all 200ms ease-in;
+  -ms-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
+}
+.sidebar #leftside-navigation ul li a:hover {
+  color: #1abc9c;
+}
+.sidebar #leftside-navigation ul li a span {
+  display: inline-block;
+}
+.sidebar #leftside-navigation ul li a i {
+  width: 20px;
+}
+.sidebar #leftside-navigation ul li a i .fa-angle-left,
+.sidebar #leftside-navigation ul li a i .fa-angle-right {
+  padding-top: 3px;
+}
+.sidebar #leftside-navigation ul ul {
+  display: none;
+}
+.sidebar #leftside-navigation ul ul li {
+  background: #23313f;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  border-bottom: none;
+}
+.sidebar #leftside-navigation ul ul li a {
+  font-size: 12px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  color: #aeb2b7;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+  
+</head>
+
+<body translate="no">
+  <aside class="sidebar">
+  <div id="leftside-navigation" class="nano">
+    <ul class="nano-content">
+      <li>
+        <a href="index.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+      </li>
+      <li class="sub-menu">
+        <a href="javascript:void(0);"><i class="fa fa-cogs"></i><span>UI Elements</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+        <ul>
+
+          <li><a href="ui-alerts-notifications.html">Alerts &amp; Notifications</a>
+          </li>
+          <li><a href="ui-panels.html">Panels</a>
+          </li>
+          <li><a href="ui-buttons.html">Buttons</a>
+          </li>
+          <li><a href="ui-slider-progress.html">Sliders &amp; Progress</a>
+          </li>
+          <li><a href="ui-modals-popups.html">Modals &amp; Popups</a>
+          </li>
+          <li><a href="ui-icons.html">Icons</a>
+          </li>
+          <li><a href="ui-grid.html">Grid</a>
+          </li>
+          <li><a href="ui-tabs-accordions.html">Tabs &amp; Accordions</a>
+          </li>
+          <li><a href="ui-nestable-list.html">Nestable Lists</a>
+          </li>
+        </ul>
+      </li>
+      <li class="sub-menu">
+        <a href="javascript:void(0);"><i class="fa fa-table"></i><span>Tables</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+        <ul>
+          <li><a href="tables-basic.html">Basic Tables</a>
+          </li>
+
+          <li><a href="tables-data.html">Data Tables</a>
+          </li>
+        </ul>
+      </li>
+      <li class="sub-menu">
+        <a href="javascript:void(0);"><i class="fa fa fa-tasks"></i><span>Forms</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+        <ul>
+          <li><a href="forms-components.html">Components</a>
+          </li>
+          <li><a href="forms-validation.html">Validation</a>
+          </li>
+          <li><a href="forms-mask.html">Mask</a>
+          </li>
+          <li><a href="forms-wizard.html">Wizard</a>
+          </li>
+          <li><a href="forms-multiple-file.html">Multiple File Upload</a>
+          </li>
+          <li><a href="forms-wysiwyg.html">WYSIWYG Editor</a>
+          </li>
+        </ul>
+      </li>
+      <li class="sub-menu active">
+        <a href="javascript:void(0);"><i class="fa fa-envelope"></i><span>Mail</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+        <ul>
+          <li class="active"><a href="mail-inbox.html">Inbox</a>
+          </li>
+          <li><a href="mail-compose.html">Compose Mail</a>
+          </li>
+        </ul>
+      </li>
+      <li class="sub-menu">
+        <a href="javascript:void(0);"><i class="fa fa-bar-chart-o"></i><span>Charts</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+        <ul>
+          <li><a href="charts-chartjs.html">Chartjs</a>
+          </li>
+          <li><a href="charts-morris.html">Morris</a>
+          </li>
+          <li><a href="charts-c3.html">C3 Charts</a></li>
+        </ul>
+      </li>
+      <li class="sub-menu">
+        <a href="javascript:void(0);"><i class="fa fa-map-marker"></i><span>Maps</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+        <ul>
+          <li><a href="map-google.html">Google Map</a>
+          </li>
+          <li><a href="map-vector.html">Vector Map</a>
+          </li>
+        </ul>
+      </li>
+      <li class="sub-menu">
+        <a href="typography.html"><i class="fa fa-text-height"></i><span>Typography</span></a>
+      </li>
+      <li class="sub-menu">
+        <a href="javascript:void(0);"><i class="fa fa-file"></i><span>Pages</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+        <ul>
+          <li><a href="pages-blank.html">Blank Page</a>
+          </li>
+          <li><a href="pages-login.html">Login</a>
+          </li>
+          <li><a href="pages-sign-up.html">Sign Up</a>
+          </li>
+          <li><a href="pages-calendar.html">Calendar</a>
+          </li>
+          <li><a href="pages-timeline.html">Timeline</a>
+          </li>
+          <li><a href="pages-404.html">404</a>
+          </li>
+          <li><a href="pages-500.html">500</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+      <script id="rendered-js" >
+$("#leftside-navigation .sub-menu > a").click(function (e) {
+  $("#leftside-navigation ul ul").slideUp(), $(this).next().is(":visible") || $(this).next().slideDown(),
+  e.stopPropagation();
+});
+//# sourceURL=pen.js
+    </script>
+
+  
+</body>
+
+</html>
