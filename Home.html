@@ -231,8 +231,6 @@
 
 
 
-
-
 <!DOCTYPE html>
 <html lang="en" >
 
@@ -254,246 +252,206 @@
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
 
 
-  <title>CodePen - Accordion Menu</title>
+  <title>CodePen - pure css navbar with dropdown list</title>
 
-    <link rel="canonical" href="https://codepen.io/maggiben/pen/bGpzPj">
+    <link rel="canonical" href="https://codepen.io/LA_BELLA_QUEEN/pen/roJgKR">
   
   
-  <link rel='stylesheet' href='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+  
   
 <style>
-@import url('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-stretch: normal;
-  src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsiH0B4gaVc.ttf) format('truetype');
+*{
+	
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin:0;
+	padding: 0;
 }
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: normal;
-  src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVc.ttf) format('truetype');
+body{
+	background-color: #556676;
+	margin: 0;
+	padding: 0;
 }
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: normal;
-  src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1x4gaVc.ttf) format('truetype');
+.logo{
+  color: black;
+  border: 2px solid black;
+  letter-spacing: 10px;
+  display: inline;
+  text-transform: uppercase;
+  font-size: 30px;
+  padding: 7px 15px;
 }
-body {
-  color: #5D5F63;
-  background: #293949;
-  font-family: 'Open Sans', sans-serif;
-  padding: 0;
-  margin: 0;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+
+
+.main_element{
+	background-color: #F5E1E0;
+	color: white;
+	width: 100%;
+	height: 70px;
+  line-height: 70px;
+  padding: 0 50px;
 }
-.sidebar-toggle {
-  margin-left: -240px;
+
+
+
+ul{
+	list-style-type: none;
+  float: right;
 }
-.sidebar {
-  width: 240px;
-  height: 100%;
-  background: #293949;
+.main_element > ul >li{
+  padding: 0 30px;
+  display: block;
+  float: left;
+  height: 70px;
+  position: relative;
+}
+.main_element > ul >li:hover{
+  background-color: #E9CDCA;
+
+}
+a:hover{
+    color: black;
+}
+/*************************************************/
+.inside_items{
+  display: none;
   position: absolute;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  z-index: 100;
+  top:70px;
+  left: 0px;
+  
 }
-.sidebar #leftside-navigation ul,
-.sidebar #leftside-navigation ul ul {
-  margin: -2px 0 0;
-  padding: 0;
+.inside_items li{
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 30px;
+  background-color: #fff3f3;
 }
-.sidebar #leftside-navigation ul li {
-  list-style-type: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+.inside_items li:hover{
+  background-color: #E9CDCA;
 }
-.sidebar #leftside-navigation ul li.active > a {
-  color: #1abc9c;
-}
-.sidebar #leftside-navigation ul li.active ul {
+li:hover .inside_items{
   display: block;
 }
-.sidebar #leftside-navigation ul li a {
-  color: #aeb2b7;
-  text-decoration: none;
-  display: block;
-  padding: 18px 0 18px 25px;
-  font-size: 12px;
-  outline: 0;
-  -webkit-transition: all 200ms ease-in;
-  -moz-transition: all 200ms ease-in;
-  -o-transition: all 200ms ease-in;
-  -ms-transition: all 200ms ease-in;
-  transition: all 200ms ease-in;
+a{
+	text-decoration: none;
+	color:black;
+	font-size: 25px;
 }
-.sidebar #leftside-navigation ul li a:hover {
-  color: #1abc9c;
+.show::after{
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 9px solid black;
+      position: absolute;
+      top: 35px;
+      right:8px;
 }
-.sidebar #leftside-navigation ul li a span {
+/********************************************************/
+.father{
+  position: relative;
+}
+.inside_items2
+{
+  display: none;
+  position: absolute;
+  left: 200px;
+ }
+.father:hover .inside_items2{
   display: inline-block;
 }
-.sidebar #leftside-navigation ul li a i {
-  width: 20px;
+.father::after{
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 9px solid black;
+      position: absolute;
+      top: 25px;
+      right:40px;
 }
-.sidebar #leftside-navigation ul li a i .fa-angle-left,
-.sidebar #leftside-navigation ul li a i .fa-angle-right {
-  padding-top: 3px;
+.inside_items2 li{
+  border-bottom: black 1px solid;
 }
-.sidebar #leftside-navigation ul ul {
-  display: none;
+.inside_items2 li{
+  font-size: 15px;
 }
-.sidebar #leftside-navigation ul ul li {
-  background: #23313f;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  border-bottom: none;
+.inside_items2 li:hover{
+  background-color:  #726767;
 }
-.sidebar #leftside-navigation ul ul li a {
-  font-size: 12px;
-  padding-top: 13px;
-  padding-bottom: 13px;
-  color: #aeb2b7;
+.inside_items2 li:hover a{
+  color: white;
 }
+/***********************************************************/
+.text{
+  text-transform: uppercase;
+  display: inline-block;
+  font-size: 100px;
+  color: #ffffff;
+  width: 100%;
+  text-align: center;
+  margin:20px 0;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: 20px;}
 </style>
 
   <script>
   window.console = window.console || function(t) {};
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-
+  
   
 </head>
 
 <body translate="no">
-  <aside class="sidebar">
-  <div id="leftside-navigation" class="nano">
-    <ul class="nano-content">
-      <li>
-        <a href="index.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
-      </li>
-      <li class="sub-menu">
-        <a href="javascript:void(0);"><i class="fa fa-cogs"></i><span>UI Elements</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-        <ul>
-
-          <li><a href="ui-alerts-notifications.html">Alerts &amp; Notifications</a>
-          </li>
-          <li><a href="ui-panels.html">Panels</a>
-          </li>
-          <li><a href="ui-buttons.html">Buttons</a>
-          </li>
-          <li><a href="ui-slider-progress.html">Sliders &amp; Progress</a>
-          </li>
-          <li><a href="ui-modals-popups.html">Modals &amp; Popups</a>
-          </li>
-          <li><a href="ui-icons.html">Icons</a>
-          </li>
-          <li><a href="ui-grid.html">Grid</a>
-          </li>
-          <li><a href="ui-tabs-accordions.html">Tabs &amp; Accordions</a>
-          </li>
-          <li><a href="ui-nestable-list.html">Nestable Lists</a>
-          </li>
-        </ul>
-      </li>
-      <li class="sub-menu">
-        <a href="javascript:void(0);"><i class="fa fa-table"></i><span>Tables</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-        <ul>
-          <li><a href="tables-basic.html">Basic Tables</a>
-          </li>
-
-          <li><a href="tables-data.html">Data Tables</a>
-          </li>
-        </ul>
-      </li>
-      <li class="sub-menu">
-        <a href="javascript:void(0);"><i class="fa fa fa-tasks"></i><span>Forms</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-        <ul>
-          <li><a href="forms-components.html">Components</a>
-          </li>
-          <li><a href="forms-validation.html">Validation</a>
-          </li>
-          <li><a href="forms-mask.html">Mask</a>
-          </li>
-          <li><a href="forms-wizard.html">Wizard</a>
-          </li>
-          <li><a href="forms-multiple-file.html">Multiple File Upload</a>
-          </li>
-          <li><a href="forms-wysiwyg.html">WYSIWYG Editor</a>
-          </li>
-        </ul>
-      </li>
-      <li class="sub-menu active">
-        <a href="javascript:void(0);"><i class="fa fa-envelope"></i><span>Mail</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-        <ul>
-          <li class="active"><a href="mail-inbox.html">Inbox</a>
-          </li>
-          <li><a href="mail-compose.html">Compose Mail</a>
-          </li>
-        </ul>
-      </li>
-      <li class="sub-menu">
-        <a href="javascript:void(0);"><i class="fa fa-bar-chart-o"></i><span>Charts</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-        <ul>
-          <li><a href="charts-chartjs.html">Chartjs</a>
-          </li>
-          <li><a href="charts-morris.html">Morris</a>
-          </li>
-          <li><a href="charts-c3.html">C3 Charts</a></li>
-        </ul>
-      </li>
-      <li class="sub-menu">
-        <a href="javascript:void(0);"><i class="fa fa-map-marker"></i><span>Maps</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-        <ul>
-          <li><a href="map-google.html">Google Map</a>
-          </li>
-          <li><a href="map-vector.html">Vector Map</a>
-          </li>
-        </ul>
-      </li>
-      <li class="sub-menu">
-        <a href="typography.html"><i class="fa fa-text-height"></i><span>Typography</span></a>
-      </li>
-      <li class="sub-menu">
-        <a href="javascript:void(0);"><i class="fa fa-file"></i><span>Pages</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-        <ul>
-          <li><a href="pages-blank.html">Blank Page</a>
-          </li>
-          <li><a href="pages-login.html">Login</a>
-          </li>
-          <li><a href="pages-sign-up.html">Sign Up</a>
-          </li>
-          <li><a href="pages-calendar.html">Calendar</a>
-          </li>
-          <li><a href="pages-timeline.html">Timeline</a>
-          </li>
-          <li><a href="pages-404.html">404</a>
-          </li>
-          <li><a href="pages-500.html">500</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</aside>
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+  <html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="nav.css">
+	<link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+	<title>awesome nav bar with me</title>
+</head>
+<body>
+	<nav class="main_element">
+		<div class="logo">yes i can</div>
+		<ul class="papa">
+			<li> <a href="#">home</a></li>
+			<li> <a href="#" class="show">learn</a>
+				<div class="inside_items">
+					<ul>
+						<li> <a href="#">css</a></li>
+						<li> <a href="#">html</a></li>
+						<li class="father"> <a href="#">photoshop</a>
+							<ul class="inside_items2">
+								<li><a href="#"> level 1</a></li>
+								<li><a href="#"> level 2</a></li>
+								<li><a href="#"> level 3</a></li>
+								
+							</ul>
+						</li>
+						<li> <a href="#">illustrator</a></li>
+						<li> <a href="#">inDesign</a></li>
+					</ul>
+				</div>
+			</li>	
+			<li> <a href="#">contact</a></li>
+			<li> <a href="#">about</a></li>
+			<li> <a href="#">more</a></li>
+		</ul>
+		
+	</nav>
+	<div class="text">just<br>believe<br>in<br>yourself</div>
+  
+  </nav>
+</body>
+</html>
+  
       <script id="rendered-js" >
-$("#leftside-navigation .sub-menu > a").click(function (e) {
-  $("#leftside-navigation ul ul").slideUp(), $(this).next().is(":visible") || $(this).next().slideDown(),
-  e.stopPropagation();
-});
+/* pure css*/
 //# sourceURL=pen.js
     </script>
 
