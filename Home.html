@@ -1,5 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+  <header id="header">
+
+    <div id="normal-header">
+      <a href="#" id="image-link"><img src="https://i.ibb.co/LxGJ5gF/reverse-white.png" alt="Reverse Logo" id="header-img"/></a>
+
+      <nav id="nav-bar">
+        <ul>
+          <li class="nav-link" id="menu-item"><a href="#hero-header" class="menu-link"> Home </a></li>
+          <li class="nav-link" id="menu-item"><a href="#features-container" class="menu-link"> Features </a></li>
+          <li class="nav-link" id="menu-item"><a href="#presentation-container" class="menu-link"> Products </a></li>
+          <li class="nav-link" id="menu-item"><a href="#main-media-container" class="menu-link"> Media </a></li>
+          <li class="nav-link" id="menu-item"><a href="#prices-section-container" class="menu-link"> Pricing </a><li>
+        </ul>
+      </nav>
+    </div>
+
+
+    <div id="responsive-header">
+      <div id="responsive-logo-button">
+        <a href="#" id="image-link"><img src="https://i.ibb.co/0jM3ZvH/reverse-black.png" alt="Reverse Logo" id="header-img-black"/></a>
+        <button id="image-button-black"><img src="https://i.ibb.co/yfM3fdZ/dropdown-menu-black.png" alt="Dropdown Menu" id="dropdown-button-black" /></button>
+      </div>
+
+      <div id="responsive-nav-bar">
+        <ul>
+          <li class="nav-link" id="responsive-home-item"><a href="#hero-header" class="responsive-menu-link"> Home </a></li>
+          <li class="nav-link" id="responsive-features-item"><a href="#features-container" class="responsive-menu-link"> Features </a></li>
+          <li class="nav-link" id="responsive-products-item"><a href="#presentation-container" class="responsive-menu-link"> Products </a></li>
+          <li class="nav-link" id="responsive-media-item"><a href="#main-media-container" class="responsive-menu-link"> Media </a></li>
+          <li class="nav-link" id="responsive-pricing-item"><a href="#prices-section-container" class="responsive-menu-link"> Pricing </a><li>
+          </ul>
+      </div>
+    </div>
+
+  </header>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -246,6 +281,2592 @@
     }
   </script>
 
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111" />
+
+
+
+  
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+
+  <title>CodePen - FreeCodeCamp Product Landing Page Challenge</title>
+
+    <link rel="canonical" href="https://codepen.io/raikuhen/pen/Rvmaoo">
+  
+  
+  
+  
+<style>
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: auto;
+  height: auto;
+  /* font-size: 18px; */
+  font-family: "Noto Sans";
+}
+
+#red-text {
+    color: #ff5a6e;
+}
+
+#title-text-separator {
+  width: 5%;
+  margin-top: 1%;
+  border: solid 1px #ff5a6e;
+}
+
+.responsive-menu-link {
+  color: black;
+}
+
+
+/* ----- General Header CSS ------ */
+
+#header {
+  position: fixed;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: auto;
+  font-size: 19px;
+  min-height: 100px;
+}
+
+
+
+
+
+/* Normal Header */
+
+.active-header {
+  background-color: white;
+  color: black;
+}
+
+.menu-link {
+  color: white;
+}
+
+.active-menu-links {
+  color: black;
+}
+
+#normal-header {
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  font-size: 19px;
+  min-height: 100px;
+}
+
+#header-img {
+  width: 250px;
+  margin-left: 15%;
+}
+
+#nav-bar {
+}
+
+#nav-bar ul {
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+}
+
+#nav-bar li {
+  padding: 10px;
+  margin: 12px;
+}
+
+#nav-bar ul, a {
+  text-decoration: none;
+}
+
+
+
+
+
+
+/* Responsive Header */
+
+#responsive-header {
+  display: none;
+}
+
+#image-button-black {
+  display: none;
+  border: none;
+}
+
+#image-button-black:hover {
+  cursor: pointer;
+}
+
+#image-button-black:focus {
+  outline: 0;
+}
+
+
+
+
+
+/* ----- Hero Header CSS -----
+
+Tags included:
+
+1. hero-header - main container of the Hero
+
+2. hero-content - the container of the title and description within the hero Section
+
+3. hero-title - the title within the hero section
+
+4. hero-text - the text within the hero section
+
+5. hero-button - the button within the hero section
+
+*/
+
+#hero-header {
+  /* width: 100vw; */
+  height: 100vh;
+  box-shadow: 3px 3px 2px #bebebe;
+
+  /* hero-header flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Texy style */
+  text-align: center;
+  color: white;
+
+  /* Background image */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(https://i.ibb.co/VTdML0x/accessories-apple-business-1038628.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#hero-title {
+  font-size: 3.5em;
+}
+
+#hero-text {
+  font-size: 1.3em;
+  margin-top: 2%;
+}
+
+#hero-button {
+  border: solid 2px white;
+  background-color: inherit;
+  color: white;
+  margin-top: 6%;
+  width: 25%;
+  height: 55px;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+#hero-button:hover {
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+/* ----- Main Content CSS -----
+
+Tags included:
+
+1. features-container - the main container wrapping the "features" elements
+
+2. features-description - container wrapping the title and the description
+
+3. features-title - the main title of the Features
+
+4. features-separator - the line that separates the title from the Description
+
+5. features-text - the main describing the features and services
+
+6. service-features - container wrapping all 4 services
+
+7. feature - the common id applied to the container of all the 4 services
+
+8. feature img - the styling of each image belonging to each feature
+
+9. feature-title - the common id applied to the title of each feature
+
+10. feature p - the styling of each paragraph belonging to each feature
+
+11. feature-button - the common id applied to the button of each feature
+
+12. feature-button:hover - the ":hover" styling of each button
+
+*/
+
+#features-container {
+  box-shadow: 2px 2px 15px #bebebe;
+  margin-top: 5%;
+  padding: 2%;
+}
+
+#service-features {
+  display: flex;
+  flex-direction: row;
+  /* Change flow-direction to "column" in the responsive design for the features to stack
+  one on top of another. */
+  justify-content: space-around;
+  margin-top: 2%;
+  padding-bottom: 3%;
+}
+
+#features-description {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  margin-top: 2%;
+  padding: 1%;
+  display: flex;
+  width: 60%;
+}
+
+#features-description h1 {
+  font-size: 45px;
+}
+
+#features-description p {
+  padding: 1%;
+  margin-top: 1%;
+}
+
+#feature {
+  width: 20%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px #bebebe;
+  box-shadow: 1px 2px 15px #bebebe;
+}
+
+#feature img {
+  max-width: 30%;
+  max-height: 30%;
+  padding-top: 5%;
+}
+
+#feature-title {
+  margin-top: 5%;
+}
+
+#feature p {
+  width: 70%;
+  margin-top: 5%;
+}
+
+#feature-button {
+  border: none;
+  margin-top: 30%;
+  width: 12vh;
+  height: 5vh;
+  border-radius: 15px;
+  background-color: #ff5a6e;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 20%;
+}
+
+#feature-button:hover {
+  background-color: #ff7b8b;
+  cursor: pointer;
+}
+
+
+
+
+
+/* ----- Product Presentation CSS -----
+
+CSS for the section of the website that features each "product" available.
+
+Tags included:
+
+1. #presentation-container - the general container where everything is
+
+2. #presentation-title-description - the container in which the title and the description are
+
+3. #presentation-title - the main title of the section
+
+4. #presentation-separator - the CSS for the separator between the main title and the description
+
+5. #presentation-description - the main description of the section
+
+6. #section-buttons - the div containing the main product buttons
+
+7. .product-buttons - the general class used to style the buttons
+
+8. .product-button:hover - the CSS that changes the style of a button when hoevered
+
+9. .product-button:focus - the CSS that removes the outlife of the buttons when clicked
+
+10. .product-button-active - the CSS for the class that is added with jQuery to buttons when sections appear/disappear
+
+11. #section-content-container - the main container containing all the subsections
+
+12. .product-content - a general class applying some CSS to each subsection container
+
+13. #content-image - general id used to apply CSS to each image in the subsections
+
+14. #content-image-container - general id used to apply CSS to each div containing the main image of each subsection
+
+15. #content-title-text - general ID used to style the div containing each subsection's title and description
+
+16. #content-title-text p - selector used to add a little distance between the paragraph and the title
+
+17. .product-features-list - a general class used to style the feature list of each subsection
+
+18. #first-feature-list - a unique ID used to stylize only the first container with that ID.
+
+19. #product-feature-image - genral ID used to style the container of each product image1
+
+20. #correct-icon - general id of all the images used to replace UL bulletpoints in the "list" with features of each product
+
+21. #inside-features-title-text - general ID of the features of the products within each subsection
+
+22. #content-button - general ID of each button inside each product subsection
+
+23. #content-button:hover - general ID of the hover styling of each button inside the products subsection
+
+
+*/
+
+#presentation-container {
+  display: flex;
+  flex-flow: column;
+}
+
+#presentation-title-description {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+  margin-top: 5%;
+  width: 60%;
+}
+
+#presentation-title-description h1 {
+  font-size: 45px;
+}
+
+#presentation-title-description p {
+  margin-top: 1%;
+}
+
+#section-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-button {
+  border: none;
+  border-radius: 10px;
+  background-color: inherit;
+  box-shadow: 1px 2px 15px #bebebe;
+  padding: 15px;
+  width: 10%;
+  margin: 2%;
+  font-size: 15px;
+}
+
+.product-button:hover {
+  cursor: pointer;
+}
+
+.product-button:focus {
+  outline: 0;
+}
+
+.product-button-active {
+  background-color: #ff5a6e;
+  color: white;
+}
+
+
+
+
+/* -- SUBSECTION CSS: Section Content CSS -- */
+
+#section-content-container {
+  margin: auto;
+  width: 75%;
+}
+
+.product-content {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  padding: 2%;
+}
+
+#content-image {
+  width: 100%;
+  height: 100%;
+  width: 70%;
+  height: auto;
+}
+
+#content-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+#content-title-text {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  width: 50%;
+  padding: 1%;
+}
+
+#content-title-text p {
+  margin-top: 2%;
+}
+
+.product-features-list {
+  display: flex;
+  flex-flow: row;
+  align-items: flex-start;
+  margin-top: 5%;
+}
+
+#first-feature-list {
+  margin-top: 0;
+}
+
+#product-feature-image {
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 10%;
+}
+
+#correct-icon {
+  width: 100%;
+  height: 100%;
+}
+
+#inside-features-title-text {
+  display: flex;
+  flex-flow: column;
+  margin-left: 2%;
+}
+
+#content-button {
+  border: none;
+  border-radius: 10px;
+  background-color: #ff5a6e;
+  box-shadow: 1px 2px 15px #bebebe;
+  padding: 15px;
+  width: 25%;
+  margin-top: 6%;
+  font-size: 16px;
+  color: white;
+}
+
+#content-button:hover {
+  cursor: pointer;
+  background-color: #ff7b8b;
+}
+
+
+
+
+
+
+/* Media - Video Section CSS
+
+Tags included:
+
+1. #main-media-container - main container where all the elements in the section architecto
+
+2. #media-title-description - id of the container with the title and description
+
+3. #media-separator - separator between title and description
+
+4. #media-title-description p - styling applied only to the main description
+
+5. #media-video-text-container - general container keeping the title, description and video
+
+6. #media-text - id of the container with the title and description at the left of the Video
+
+7. #media-text h2 - styling of the h2 within the media-text container
+
+8. #media-text p - styling of the p within the media-text container
+
+9. #text-video-separator - separator between the text and the Video
+
+10. #media-button - the button bellow the text at the left of the video
+
+11. #media-button:hover - styling of the hover state of the button
+
+12. media-video -container with the video
+
+13. iframe-video - the iframe tag containing the YouTube video
+
+*/
+
+#main-media-container {
+  box-shadow: 2px 2px 15px #bebebe;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+#media-title-description {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 4%;
+  width: 90%;
+}
+
+#media-title-description h1 {
+  font-size: 45px;
+}
+
+#media-title-description p {
+  margin-top: 1%;
+}
+
+#media-video-text-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 75%;
+  padding: 3% 2% 3% 2%;
+  /* background-color: #f5f5f5; */
+  border-radius: 10px;
+}
+
+#media-text {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  width: 40%;
+  height: auto;
+}
+
+#media-text h2 {
+  font-size: 30px;
+}
+
+#media-text p {
+  font-size: 17px;
+  margin-top: 3%;
+}
+
+#text-video-sperator {
+  height: 20vh;
+  border: solid 0.5px #e1e1e1;
+}
+
+#media-button {
+  border: solid 1px #c1c1c1;
+  border-radius: 10px;
+  background-color: inherit;
+  box-shadow: 1px 2px 2px #bebebe;
+  padding: 15px;
+  width: 25%;
+  margin-top: 5%;
+  font-size: 15px;
+  color: black;
+}
+
+#media-button:hover {
+  cursor: pointer;
+  background-color: white;
+  background-color: #ff5a6e;
+  color: white;
+}
+
+#media-video {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#video {
+  width: 60vh;
+  height: 35vh;
+}
+
+
+
+
+/* Prices Section CSS
+
+Tags Included:
+
+1. #prices-section-container - main container of the price section
+
+2. #prices-title-description - container where the title and description are
+
+3. #prices-title-description h1 - main title of the "Prices" section
+
+4. #prices-separator - Separator between title and description
+
+5. #prices-title-description p - main description of the "Prices" section
+
+6. #all-prices-container - container where all the divs with prices are
+
+7. .price-container - common class used to style the containers of each price
+
+8. .price-container h1 - title of each price (starter/premium/professional)
+
+9. .price-container h2 - subtitle of each price ($55/$85/$120)
+
+10. .price-container p - monthly payment text style
+
+11. .price-container hr - prices separator style
+
+12. .price-container ul - the list with features of each price
+
+13. .price-container li - each individual item on the list with features for each price
+
+14. .price-container button - style of each button of each price section
+
+15. .price-container button:hover - the hover state of each button of each price
+
+16. #price-container-two - the price container in the middle, placed a little higher than the others
+
+*/
+
+#prices-section-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  margin-top: 3%;
+}
+
+#prices-title-description {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 60%;
+}
+
+#prices-title-description h1 {
+  font-size: 45px;
+}
+
+#prices-separator {
+  width: 5%;
+  margin-top: 2%;
+  border: solid 1px #ff5a63;
+}
+
+#prices-title-description p {
+  margin-top: 1%;
+}
+
+#all-prices-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+}
+
+.price-container {
+  box-shadow: 2px 2px 15px #bebebe;
+  text-align: center;
+  margin-top: 7%;
+  width: 27%;
+}
+
+.price-container h1 {
+  color: #ff5a63;
+  font-size: 45px;
+  margin-top: 6%;
+}
+
+.price-container h2 {
+  color: #323a45;
+  font-size: 40px;
+  margin-top: 4%;
+}
+
+.price-container p {
+  margin-top: 4%;
+  font-size: 17px;
+}
+
+.price-container hr{
+  margin: auto;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  width: 70%;
+  border: solid 0.5px #c1c1c1;
+}
+
+.price-container ul {
+  list-style: none;
+}
+
+.price-container li {
+  padding: 3%;
+}
+
+.price-container button {
+  border: none;
+  border-radius: 10px;
+  background-color: #ff5a6e;
+  box-shadow: 1px 2px 15px #bebebe;
+  padding: 15px;
+  width: 30%;
+  margin-top: 6%;
+  font-size: 16px;
+  color: white;
+  margin-bottom: 6%;
+}
+
+.price-container button:hover {
+  cursor: pointer;
+  background-color: #ff7b8b;
+}
+
+#price-container-two {
+  margin-top: 4%;
+}
+
+
+
+
+/* Newsletter Section CSS
+
+Tags included:
+
+1. #newsletter-container - main newsletter section container
+
+2. #newsletter-title-description - container with the main title and description
+
+3. #newsletter-title-description h1 - styling for the main title
+
+4. #newsletter-input-container - container with the form and input elements
+
+5. #email-form - the id given to the <form> tag
+
+6. #email-form label - styling of the label before the <input> tag
+
+7. #email-input - id of the <input> tag where the email will be written
+
+8. #email-form button - styling of the "submit" button after the <input> tag
+
+9. #email-form button:hover - styling for the hover state of the button
+
+*/
+
+#newsletter-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+}
+
+#newsletter-title-description {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 60%;
+}
+
+#newsletter-title-description h1 {
+  font-size: 45px;
+}
+
+#email-input-container {
+  margin-top: 1%
+}
+
+#email-form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#email-form label {
+  font-size: 20px;
+}
+
+#email {
+  font-size: 18px;
+  margin-top: 4%;
+  padding: 3%;
+  width: 150%;
+}
+
+#submit {
+  border: none;
+  border-radius: 10px;
+  background-color: #ff5a6e;
+  box-shadow: 1px 2px 15px #bebebe;
+  font-size: 16px;
+  color: white;
+  margin-top: 5%;
+  padding: 15px;
+  width: 40%;
+}
+
+#submit:hover {
+  cursor: pointer;
+  background-color: #ff7b8b;
+}
+
+
+
+/* Footer Section */
+
+footer {
+  box-shadow: 1px 2px 15px #bebebe;
+  margin-top: 4%;
+  color: #858585;
+  text-align: center;
+}
+
+footer p {
+  padding: 0.5%;
+}
+
+
+
+
+
+
+
+
+
+
+/* @Media min-width: 480px */
+@media only screen and (min-width : 200px) and (max-width : 860px) {
+
+  /* General Elements */
+
+  #title-text-separator {
+    width: 15%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border: solid 1px #ff5a6e;
+  }
+
+
+  /* Navigation CSS */
+  #header {
+    background: white;
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 80px;
+    margin: auto;
+  }
+
+
+  #normal-header {
+    display: none;
+  }
+
+  #responsive-header {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    margin: auto;
+  }
+
+  #responsive-logo-button {
+    display: flex;
+    justify-content: space-between;
+    padding: 1% 0 1% 0;
+  }
+
+  #responsive-nav-bar {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  #responsive-nav-bar ul {
+    list-style: none;
+  }
+
+  #responsive-nav-bar li {
+    text-align: center;
+    font-size: 23px;
+    margin-top: 40%;
+  }
+
+  #responsive-first-item {
+    margin-top: 0;
+    padding: 0;
+  }
+
+  #header-img-black {
+    margin-left: 5%;
+    margin-top: 3%;
+    width: 50%;
+    height: auto;
+  }
+
+  #dropdown-button-black {
+    display: block;
+    width: 55%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  #image-button-black {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    padding: 2%;
+  }
+
+
+
+
+  /* Hero CSS */
+
+  #hero-header {
+    width: auto;
+    height: 120vh;
+
+    /* hero-header flexbox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    /* Texy style */
+    text-align: center;
+    color: white;
+
+    /* Background image */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(https://i.ibb.co/VTdML0x/accessories-apple-business-1038628.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  #hero-title {
+    font-size: 3.5em;
+  }
+
+  #hero-text {
+    font-size: 1.3em;
+    margin-top: 2%;
+  }
+
+  #hero-button {
+    border: solid 2px white;
+    background-color: inherit;
+    color: white;
+    margin-top: 6%;
+    width: 25%;
+    height: 55px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+
+  #hero-button:hover {
+    cursor: pointer;
+  }
+
+
+
+  /* Service Features CSS */
+
+  #service-features {
+    display: flex;
+    flex-direction: column;
+    /* Change flow-direction to "column" in the responsive design for the features to stack
+    one on top of another. */
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2%;
+  }
+
+  #features-description {
+    width: 90%;
+  }
+
+  #feature {
+    width: 80%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px #bebebe;
+    box-shadow: 1px 2px 15px #bebebe;
+    margin-top: 10%;
+  }
+
+  #feature-button {
+    border: none;
+    margin-top: 30%;
+    width: 15vh;
+    height: 5vh;
+    border-radius: 15px;
+    background-color: #ff5a6e;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 20%;
+  }
+
+
+
+
+  /* Presentation Section CSS */
+
+  #presentation-container {
+    margin-top: 5%;
+  }
+
+  #presentation-title-description {
+    width: 90%;
+  }
+
+  #section-buttons {
+    margin-top: 5%;
+  }
+
+  #section-content-container {
+    margin: auto;
+    width: 90%;
+  }
+
+  #section-content-container {
+    margin-top: 7%;
+  }
+
+  .product-button {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 40%;
+    padding: 15px;
+  }
+
+  .product-content {
+    display: flex;
+    flex-flow: column;
+    padding: 2%;
+  }
+
+  #content-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  #content-image-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  #content-title-text {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin: auto;
+    margin-top: 5%;
+  }
+
+  #content-title-text h1 {
+    margin: auto;
+  }
+
+  #centered-product-description {
+    text-align: center;
+  }
+
+  #content-title-text p {
+    margin-top: 5%;
+  }
+
+  #product-feature-image {
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+  }
+
+  .product-features-list {
+    margin-top: 15%;
+  }
+
+  #first-feature-list {
+    margin-top: 10%;
+  }
+
+  #content-button {
+    margin: auto;
+    margin-top: 10%;
+    width: 35%;
+  }
+
+
+
+
+  /* -- Media Section CSS -- */
+
+  #main-media-container {
+    margin-top: 5%;
+  }
+
+  #media-title-description {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 90%;
+    margin-top: 8%;
+  }
+
+  #media-video-text-container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    padding: 2% 1% 2% 1%;
+    margin-top: 10%;
+    text-align: center;
+  }
+
+  #media-text {
+    width: 100%;
+  }
+
+  #media-text h2 {
+    margin: auto;
+  }
+
+  #media-text p {
+    margin-top: 6%;
+  }
+
+  #text-video-sperator {
+    height: 1%;
+    width: 80%;
+    margin-top: 10%;
+    margin-bottom: 9%;
+  }
+
+  #media-button {
+    width: 30%;
+    margin: auto;
+    margin-top: 7%;
+  }
+
+  #media-video {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+  }
+
+  #iframe-video {
+    width: 50vh;
+    height: 30vh;
+    margin-bottom: 8%;
+  }
+
+
+  /* -- Prices Section CSS -- */
+
+  #prices-section-container {
+    margin-top: 15%;
+  }
+
+  #prices-title-description {
+    width: 90%;
+  }
+
+  #all-prices-container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .price-container {
+    width: 90%;
+    margin-top: 15%;
+  }
+
+  #price-container-two {
+    margin-top: 15%;
+  }
+
+  .price-container button {
+    width: 35%;
+  }
+
+
+
+  /* Email Section CSS */
+
+  #newsletter-container {
+    margin-top: 10%;
+  }
+
+  #newsletter-title-description {
+    width: 90%;
+  }
+
+  #email-form label {
+    width: 90%;
+    text-align: center;
+  }
+
+  #email {
+    width: 80%;
+  }
+
+
+  /* Footer Section */
+
+  footer {
+    margin-top: 10%;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (min-width : 860px) and (max-width : 1280px) {
+
+
+    /* Navigation CSS */
+    #header {
+      background: white;
+      position: fixed;
+      display: flex;
+      flex-wrap: wrap;
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      min-height: 80px;
+      margin: auto;
+    }
+
+
+    #normal-header {
+      display: none;
+    }
+
+    #responsive-header {
+      display: flex;
+      flex-flow: column;
+      width: 100%;
+      margin: auto;
+    }
+
+    #responsive-logo-button {
+      display: flex;
+      justify-content: space-between;
+      padding: 1% 0 1% 0;
+    }
+
+    #responsive-nav-bar {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+    }
+
+    #responsive-nav-bar ul {
+      list-style: none;
+    }
+
+    #responsive-nav-bar li {
+      text-align: center;
+      font-size: 23px;
+      margin-top: 40%;
+    }
+
+    #responsive-first-item {
+      margin-top: 0;
+      padding: 0;
+    }
+
+    #header-img-black {
+      margin-left: 5%;
+      margin-top: 3%;
+      width: 50%;
+      height: auto;
+    }
+
+    #dropdown-button-black {
+      display: block;
+      width: 55%;
+      height: auto;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    #image-button-black {
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: inherit;
+      padding: 2%;
+    }
+
+
+  /* Hero CSS */
+
+  #hero-header {
+    width: auto;
+    height: 120vh;
+
+    /* hero-header flexbox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    /* Texy style */
+    text-align: center;
+    color: white;
+
+    /* Background image */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(https://i.ibb.co/VTdML0x/accessories-apple-business-1038628.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  #hero-title {
+    font-size: 3.5em;
+  }
+
+  #hero-text {
+    font-size: 1.3em;
+    margin-top: 2%;
+  }
+
+  #hero-button {
+    border: solid 2px white;
+    background-color: inherit;
+    color: white;
+    margin-top: 6%;
+    width: 25%;
+    height: 55px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+
+  #hero-button:hover {
+    cursor: pointer;
+  }
+
+
+
+  /* Service Features CSS */
+
+  #service-features {
+    display: flex;
+    flex-flow: row;
+    /* Change flow-direction to "column" in the responsive design for the features to stack
+    one on top of another. */
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 2%;
+  }
+
+  #features-description {
+    width: 90%;
+  }
+
+  #feature {
+    width: 30%;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px #bebebe;
+    box-shadow: 1px 2px 15px #bebebe;
+    margin-top: 10%;
+  }
+
+  #feature-button {
+    border: none;
+    margin-top: 30%;
+    width: 15vh;
+    height: 5vh;
+    border-radius: 15px;
+    background-color: #ff5a6e;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 20%;
+  }
+
+
+
+
+  /* Presentation Section CSS */
+
+  #presentation-container {
+    margin-top: 5%;
+    width: 80%;
+    margin: auto;
+  }
+
+  #presentation-title-description {
+    width: 90%;
+  }
+
+  #section-buttons {
+    margin-top: 5%;
+  }
+
+  #section-content-container {
+    margin: auto;
+    width: 90%;
+  }
+
+  #section-content-container {
+    margin-top: 7%;
+  }
+
+  .product-button {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 40%;
+    padding: 15px;
+  }
+
+  .product-content {
+    display: flex;
+    flex-flow: column;
+    padding: 2%;
+  }
+
+  #content-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  #content-image-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  #content-title-text {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin: auto;
+    margin-top: 5%;
+  }
+
+  #content-title-text h1 {
+    margin: auto;
+  }
+
+  #centered-product-description {
+    text-align: center;
+  }
+
+  #content-title-text p {
+    margin-top: 5%;
+  }
+
+  #product-feature-image {
+    justify-content: center;
+    align-items: center;
+    width: 8%;
+  }
+
+  .product-features-list {
+    margin-top: 15%;
+  }
+
+  #first-feature-list {
+    margin-top: 10%;
+  }
+
+  #content-button {
+    margin: auto;
+    margin-top: 10%;
+    width: 35%;
+  }
+
+
+
+
+  /* -- Media Section CSS -- */
+
+  #main-media-container {
+    margin-top: 5%;
+  }
+
+  #media-title-description {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 90%;
+    margin-top: 8%;
+  }
+
+  #media-video-text-container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    padding: 2% 1% 2% 1%;
+    margin-top: 10%;
+    text-align: center;
+  }
+
+  #media-text {
+    width: 100%;
+  }
+
+  #media-text h2 {
+    margin: auto;
+  }
+
+  #media-text p {
+    margin-top: 6%;
+  }
+
+  #text-video-sperator {
+    height: 1%;
+    width: 80%;
+    margin-top: 10%;
+    margin-bottom: 9%;
+  }
+
+  #media-button {
+    width: 35%;
+    margin: auto;
+    margin-top: 7%;
+  }
+
+  #media-video {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+  }
+
+  #iframe-video {
+    width: 80vh;
+    height: 50vh;
+    margin-bottom: 9%;
+  }
+
+
+  /* -- Prices Section CSS -- */
+
+  #prices-section-container {
+    margin-top: 15%;
+  }
+
+  #prices-title-description {
+    width: 90%;
+  }
+
+  #all-prices-container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .price-container {
+    width: 50%;
+    margin-top: 15%;
+  }
+
+  #price-container-two {
+    margin-top: 15%;
+  }
+
+  .price-container button {
+    width: 35%;
+  }
+
+
+
+  /* Email Section CSS */
+
+  #newsletter-container {
+    margin-top: 10%;
+  }
+
+  #newsletter-title-description {
+    width: 90%;
+  }
+
+  #email-form label {
+    width: 90%;
+    text-align: center;
+  }
+
+  #email {
+    width: 80%;
+  }
+
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+  <link rel="stylesheet" type="text/css" href="responsive.css" />
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+  <title> Landing Page </title>
+
+</head>
+<body>
+
+
+  <header id="header">
+
+    <div id="normal-header">
+      <a href="#" id="image-link"><img src="https://i.ibb.co/LxGJ5gF/reverse-white.png" alt="Reverse Logo" id="header-img"/></a>
+
+      <nav id="nav-bar">
+        <ul>
+          <li class="nav-link" id="menu-item"><a href="#hero-header" class="menu-link"> Home </a></li>
+          <li class="nav-link" id="menu-item"><a href="#features-container" class="menu-link"> Features </a></li>
+          <li class="nav-link" id="menu-item"><a href="#presentation-container" class="menu-link"> Products </a></li>
+          <li class="nav-link" id="menu-item"><a href="#main-media-container" class="menu-link"> Media </a></li>
+          <li class="nav-link" id="menu-item"><a href="#prices-section-container" class="menu-link"> Pricing </a><li>
+        </ul>
+      </nav>
+    </div>
+
+
+    <div id="responsive-header">
+      <div id="responsive-logo-button">
+        <a href="#" id="image-link"><img src="https://i.ibb.co/0jM3ZvH/reverse-black.png" alt="Reverse Logo" id="header-img-black"/></a>
+        <button id="image-button-black"><img src="https://i.ibb.co/yfM3fdZ/dropdown-menu-black.png" alt="Dropdown Menu" id="dropdown-button-black" /></button>
+      </div>
+
+      <div id="responsive-nav-bar">
+        <ul>
+          <li class="nav-link" id="responsive-home-item"><a href="#hero-header" class="responsive-menu-link"> Home </a></li>
+          <li class="nav-link" id="responsive-features-item"><a href="#features-container" class="responsive-menu-link"> Features </a></li>
+          <li class="nav-link" id="responsive-products-item"><a href="#presentation-container" class="responsive-menu-link"> Products </a></li>
+          <li class="nav-link" id="responsive-media-item"><a href="#main-media-container" class="responsive-menu-link"> Media </a></li>
+          <li class="nav-link" id="responsive-pricing-item"><a href="#prices-section-container" class="responsive-menu-link"> Pricing </a><li>
+          </ul>
+      </div>
+    </div>
+
+  </header>
+
+
+  <!-- Hero Image, text & button -->
+
+  <div id="hero-header">
+    <div id="hero-content">
+      <h1 id="hero-title"> A RANDOM TITLE </H1>
+
+      <p id="hero-text"> Some random text to describe the random title </p>
+
+      <a href="#features-container"><button id="hero-button"> Next Section </button></a>
+    </div>
+
+  </div>
+
+  <div id="main">
+
+    <!-- "Features Section" -->
+
+    <div id="features-container">
+
+      <!-- Features Section Description -->
+      <div id="features-description">
+        <h1> Our services offer <span id="red-text"> the best features </span> </h1>
+
+        <hr id="title-text-separator" />
+
+        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+          do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.  </p>
+      </div>
+
+
+      <!-- Features of the Services -->
+      <div id="service-features">
+
+        <div id="feature">
+          <img src="https://i.ibb.co/tQrPJGk/like.png" alt="Heart Icon" id="heart-icon" />
+
+          <h2 id="feature-title"> Short Title </h2>
+
+          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. </p>
+
+          <a href="#"><button id="feature-button"> See more! </button></a>
+        </div>
+
+        <div id="feature">
+          <img src="https://i.ibb.co/LY0pq5X/web-programming.png" alt="Code Icon" id="code-icon" />
+
+          <h2 id="feature-title"> Short Title </h2>
+
+          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. </p>
+
+          <a href="#"><button id="feature-button"> See more! </button></a>
+        </div>
+
+        <div id="feature">
+          <img src="https://i.ibb.co/vHjwX9N/smartphone-with-shield.png" alt="Shield on Phone Icon" id="phone-icon" />
+
+          <h2 id="feature-title"> Short Title </h2>
+
+          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. </p>
+
+          <a href="#"><button id="feature-button"> See more! </button></a>
+        </div>
+
+        <div id="feature">
+          <img src="https://i.ibb.co/6D3GmDW/monitor.png" alt="Monitor Icon" id="monitor-icon" />
+
+          <h2 id="feature-title"> Short Title </h2>
+
+          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. </p>
+
+          <a href="#"><button id="feature-button"> See more! </button></a>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- /"Features Section" -->
+
+
+
+    <!-- Presentation Section -->
+
+    <div id="presentation-container">
+
+      <div id="presentation-title-description">
+        <h1> Here is how <span id="red-text">we do it</span> </h1>
+
+        <hr id="title-text-separator" />
+
+        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. </p>
+      </div>
+
+      <div id="section-buttons">
+
+        <button class="product-button" id="first-product-button"> Product 1 </button>
+
+        <button class="product-button" id="second-product-button"> Product 2 </button>
+
+        <button class="product-button" id="third-product-button"> Product 3 </button>
+
+        <button class="product-button" id="fourth-product-button"> Product 4 </button>
+
+      </div>
+
+
+      <!-- Product Content Section -->
+      <div id="section-content-container">
+
+
+
+        <!-- Content Container 1 -->
+        <div id="product-container-one" class="product-content">
+
+          <div id="content-image-container">
+            <img src="https://i.ibb.co/WyWxQ3f/action-blur-close-up-735911.jpg" id="content-image" class="image1" />
+          </div>
+
+          <div id="content-title-text">
+            <h1> Product Nr.1 Title </h1>
+
+            <p id="centered-product-description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu.
+              <br /><br />
+            </p>
+
+            <div class="product-features-list" id="first-feature-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+
+            <button id="content-button"> Read More </button>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        <!-- Content Container 2 -->
+        <div id="product-container-two" class="product-content">
+          <div id="content-image-container">
+            <img src="https://i.ibb.co/rp92fYB/blur-business-close-up-1029757.jpg" id="content-image" class="image2" />
+          </div>
+
+          <div id="content-title-text">
+            <h1> Product Nr.2 Title </h1>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu.
+              <br /><br />
+            </p>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <button id="content-button"> Read More </button>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        <!-- Content Container 3 -->
+        <div id="product-container-three" class="product-content">
+          <div id="content-image-container">
+            <img src="https://i.ibb.co/Yj4fGBN/adult-apple-device-business-839465.jpg" id="content-image" class="image3" />
+          </div>
+
+          <div id="content-title-text">
+            <h1> Product Nr.3 Title </h1>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu.
+              <br /><br />
+            </p>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <button id="content-button"> Read More </button>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <!-- Content Container 4 -->
+        <div id="product-container-four" class="product-content">
+          <div id="content-image-container">
+            <img src="https://i.ibb.co/t3Lnfm6/arrows-blur-close-up-163130.jpg" id="content-image" class="image2" />
+          </div>
+
+          <div id="content-title-text">
+            <h1> Product Nr.4 Title </h1>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu.
+              <br /><br />
+            </p>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <div class="product-features-list">
+
+              <div id="product-feature-image">
+                <img src="https://i.ibb.co/LzczvS3/correct.png" alt="check-sign" id="correct-icon" />
+              </div>
+
+              <div id="inside-features-title-text">
+                <h2> This is test title </h2>
+
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+                incidintum ut labore et dolor magna aliqua. </p>
+              </div>
+
+            </div>
+
+            <button id="content-button"> Read More </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Media - Video Section -->
+
+    <div id="main-media-container">
+
+      <div id="media-title-description">
+        <h1> Media Section </h1>
+
+        <hr id="title-text-separator">
+
+        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+      </div>
+
+      <div id="media-video-text-container">
+        <div id="media-text">
+          <h2> Media Text Title </h2>
+
+          <p>
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            <br /><br />
+
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+            architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+            aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
+            sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+            adipisci velit,
+          </p>
+
+          <button type="button" id="media-button"> Read More </button>
+        </div>
+
+
+          <hr id="text-video-sperator" />
+
+
+        <div id="media-video">
+          <iframe id="video"  src="https://www.youtube.com/embed/r0CQYTOyiPQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <!-- width="560" height="315" -->
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Prices Section -->
+    <div id="prices-section-container">
+      <div id="prices-title-description">
+        <h1> Prices title </h1>
+
+        <hr id="title-text-separator" />
+
+        <p>
+          Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolor magna aliqua. Ut enim ad minim veniam, quis mostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </div>
+
+      <div id="all-prices-container">
+
+        <div id="price-container-one" class="price-container">
+
+          <h1> Starter Pack </h1>
+
+          <h2> $55 </h2>
+
+          <p> Monthly Payment </p>
+
+          <hr />
+
+          <ul>
+            <li> Access to 5 of our main tools </li>
+            <li> 24/7 access to our support team </li>
+            <li> Weekly access to service meetings </li>
+            <li> 15GB of Cloud Storage </li>
+            <li> Full access to our Documentation </li>
+          </ul>
+
+          <button type="button"> Purchase Now </button>
+
+        </div>
+
+
+
+
+
+
+        <div id="price-container-two" class="price-container">
+
+          <h1> Premium Pack </h1>
+
+          <h2> $85 </h2>
+
+          <p> Monthly Payment </p>
+
+          <hr />
+
+          <ul>
+            <li> Access to ALL of our main tools </li>
+            <li> 24/7 access to our support team </li>
+            <li> Daily access to service meetings </li>
+            <li> 55GB of Cloud Storage </li>
+            <li> Access to our statistics tool </li>
+          </ul>
+
+          <button type="button"> Purchase Now </button>
+
+        </div>
+
+
+
+
+
+
+        <div id="price-container-three" class="price-container">
+
+          <h1> Professional Pack </h1>
+
+          <h2> $120 </h2>
+
+          <p> Monthly Payment </p>
+
+          <hr />
+
+          <ul>
+            <li> Access to all tool and databases </li>
+            <li> Personal support assistant </li>
+            <li> Presentation tools and meetings </li>
+            <li> 155GB of Cloud Storage </li>
+            <li> Access to the internal stock market </li>
+          </ul>
+
+          <button type="button"> Purchase Now </button>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- Newsletter Section -->
+    <div id="newsletter-container">
+      <div id="newsletter-title-description">
+        <h1> Join our Newsletter! </h1>
+
+        <hr id="title-text-separator" />
+
+      </div>
+
+      <div id="email-input-container">
+        <form id="email-form" action="https://www.freecodecamp.com/email-submit">
+          <label> Join our Newsletter and don't miss future deals! </label>
+          <input type="email" placeholder="Enter your e-mail" id="email" />
+          <button id="submit" type="submit"> Subscribe </button>
+        </form>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+<!-- JavaScript/jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="jquery.js"></script>
+
+
+  </div>
+
+  <footer>
+    <p> FreeCodeCamp Coding Challenge / Responsive Web Design Projects /Build a Product Landing Page </p>
+  </footer>
+</body>
+</html>
+  
+      <script id="rendered-js" >
+$(document).ready(function () {
+
+  $(window).on("scroll", function () {
+    if ($(window).scrollTop() > 50) {
+      $("#header").addClass("active-header");
+      $(".menu-link").addClass("active-menu-links");
+      $("#header-img").attr("src", "https://i.ibb.co/0jM3ZvH/reverse-black.png");
+    } else {
+      //remove the background property so it comes transparent again (defined in your css)
+      $("#header").removeClass("active-header");
+      $(".menu-link").removeClass("active-menu-links");
+      $("#header-img").attr("src", "https://i.ibb.co/LxGJ5gF/reverse-white.png");
+    }
+  });
+
+  // Responsive menu
+  $("#responsive-nav-bar").hide();
+
+  $("#image-button-black").click(function () {
+    $("#responsive-nav-bar").slideToggle();
+  });
+
+  $("#responsive-home-item , #responsive-features-item , #responsive-products-item , #responsive-media-item , #responsive-pricing-item").click(function () {
+    $("#responsive-nav-bar").slideToggle(200);
+  });
+
+
+
+
+
+  // Default sections visibility
+  $('.product-content').hide();
+  $('#product-container-one').show();
+
+
+  // Button variables
+  var firstButton = $('#first-product-button');
+  var secondButton = $('#second-product-button');
+  var thirdButton = $('#third-product-button');
+  var fourthButton = $('#fourth-product-button');
+  var buttons = $('.product-button');
+
+
+
+  // Product variables
+  var firstProduct = $('#product-container-one');
+  var secondProduct = $('#product-container-two');
+  var thirdProduct = $('#product-container-three');
+  var fourthProduct = $('#product-container-four');
+
+
+  // Visibility variables
+  var firstVisible = firstProduct.is(':visible');
+  var secondVisible = secondProduct.is(':visible');
+  var thirdVisible = thirdProduct.is(':visible');
+  var fourthVisible = fourthProduct.is(':visible');
+
+
+  // Visible and Hidden Sections .click function
+  $(firstButton).click(function () {
+    $('.product-content').hide();
+    $(firstProduct).fadeIn(600);
+    buttons.removeClass('product-button-active');
+    firstButton.addClass('product-button-active');
+  });
+
+  $(secondButton).click(function () {
+    $('.product-content').hide();
+    $(secondProduct).fadeIn(600);
+    $(secondProduct).css('visibility', 'visible');
+    buttons.removeClass('product-button-active');
+    secondButton.addClass('product-button-active');
+  });
+
+  $(thirdButton).click(function () {
+    $('.product-content').hide();
+    $(thirdProduct).fadeIn(600);
+    buttons.removeClass('product-button-active');
+    thirdButton.addClass('product-button-active');
+  });
+
+  $(fourthButton).click(function () {
+    $('.product-content').hide();
+    $(fourthProduct).fadeIn(600);
+    buttons.removeClass('product-button-active');
+    fourthButton.addClass('product-button-active');
+  });
+
+
+
+  // First Button Styling hidden/visible
+  if (firstVisible === true) {
+    firstButton.addClass('product-button-active');
+  }
+
+});
+//# sourceURL=pen.js
+    </script>
+
+  
 </body>
 
 </html>
