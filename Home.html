@@ -179,7 +179,6 @@ a{
 <body>
   <h1>Banking App</h1>
   <div>
-    <p>Account Total: $<span id="accountTotal">0</span></p>
     <label for="addAmount">Add Amount: $</label>
     <input type="number" id="addAmount">
     <button onclick="addToAccount()">Add</button>
@@ -201,8 +200,10 @@ a{
     <input type="number" id="categoryAmount">
     <button onclick="updateCategoryBalance()">Update Category</button>
   </div>
-  <div id="log">
-    <!-- Transaction log will be added here -->
+  <div class="card">
+    <div id="log">
+      <!-- Transaction log will be added here -->
+    </div>
   </div>
   <!-- Display Chart for Account Total -->
   <div id="accountChartContainer">
