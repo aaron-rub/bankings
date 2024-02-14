@@ -230,7 +230,7 @@ a{
 
   <!-- Display Chart for Account Total -->
   <div id="accountChartContainer">
-    <canvas id="accountChart" width="300" height="200"></canvas>
+    <canvas id="accountChart" width="400" height="200"></canvas>
   </div>
   <!-- Display Chart for Each Category -->
   <div id="categoryCharts">
@@ -307,7 +307,7 @@ a{
       const chartContainer = document.getElementById('categoryCharts');
       const canvas = document.createElement('canvas');
       canvas.id = `chart-${categoryName}`;
-      canvas.width = 400;
+      canvas.width = 300;
       canvas.height = 200;
       chartContainer.appendChild(canvas);
 
