@@ -201,7 +201,18 @@ a{
 
 
 
-
+  <style>
+    .cardd {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 2000px;
+      margin: auto;
+      font-family: arial;
+      position: absolute;
+      top: 200px;
+      left:40px;
+    }
+    </style>
+    </head>
   <style>
     .card {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -214,7 +225,7 @@ a{
       right:40px;
     }
     </style>
-    </head>
+
     <body>
     
     <div class="card">
@@ -225,7 +236,14 @@ a{
     </body>
 
 
-
+    <body>
+    
+      <div class="cardd">
+        <div id="accountChartContainer">
+          <canvas id="accountChart" width="400" height="200"></canvas>
+        </div>
+      </div>
+      </body>
   <!-- Display Chart for Account Total -->
   <div id="accountChartContainer">
     <canvas id="accountChart" width="400" height="200"></canvas>
