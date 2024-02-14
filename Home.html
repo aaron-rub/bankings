@@ -200,11 +200,33 @@ a{
     <input type="number" id="categoryAmount">
     <button onclick="updateCategoryBalance()">Update Category</button>
   </div>
-  <div class="card">
-    <div id="log">
-      <!-- Transaction log will be added here -->
-    </div>
-  </div>
+
+
+
+
+  <style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 300px;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+    }
+    </style>
+    </head>
+    <body>
+    
+    <h2 style="text-align:center">Product Card</h2>
+    
+    <div class="card">
+      <div id="log">
+        <!-- Transaction log will be added here -->
+      </div>
+    
+    </body>
+
+
+
   <!-- Display Chart for Account Total -->
   <div id="accountChartContainer">
     <canvas id="accountChart" width="400" height="200"></canvas>
