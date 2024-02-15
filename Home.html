@@ -176,8 +176,7 @@ a{
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
-  <div class="car">
+  <div>
     <label for="addAmount">Add Amount: $</label>
     <input type="number" id="addAmount">
     <button onclick="addToAccount()">Add</button>
@@ -497,6 +496,7 @@ mark {
 
 .car {
   background: var(--color-background);
+  padding: calc(4 * var(--size-bezel));
   margin-top: calc(4 * var(--size-bezel));
   border-radius: var(--size-radius);
   border: 3px solid var(--color-shadow, currentColor);
