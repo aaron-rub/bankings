@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Timer</title>
+  <style>
+    #timer {
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="inputSection">
+  <label for="nameInput">Enter your name:</label>
+  <input type="text" id="nameInput">
+  <button onclick="startTimer()">Start Timer</button>
+</div>
+
+<div id="timerSection" style="display: none;">
+  <p id="timer">Time left: 8:00</p>
+  <button onclick="backInClass()">Back in Class</button>
+</div>
+
+<script>
+  let startTime;
+  let timerInterval;
+
+  function startTimer() {
+    const name = document.getElementById("nameInput").value;
+    startTime = new Date();
+    document.getElementById("inputSection").style.display = "none";
+    document.getElementById("timerSection").style.display = "block";
+    logData(name, startTime, "Start Timer");
+
+    timerInterval = setInterval(updateTimer, 1000);
+  }
+
+  function updateTimer() {
+    const currentTime = new Date();
+    const elapsedTime = Math.floor((currentTime - startTime) / 1000);
+    const remainingTime = 8 * 60 - elapsedTime;
+
+    if (remainingTime <= 0) {
+      clearInterval(timerInterval);
+      notifyLate();
+    } else {
+      const minutes = Math.floor(remainingTime / 60);
+      const seconds = remainingTime % 60;
+      document.getElementById("timer").innerText = `Time left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+  }
+
+  function backInClass() {
+    const endTime = new Date();
+    clearInterval(timerInterval);
+    const name = document.getElementById("nameInput").value;
+    logData(name, endTime, "Back in Class");
+    const elapsedTime = Math.floor((endTime - startTime) / 1000);
+    alert(`You're back in class! Time elapsed: ${elapsedTime} seconds.`);
+    resetForm();
+  }
+
+  function notifyLate() {
+    // Simulate a notification
+    alert("You're late! The teacher has been notified.");
+  }
+
+  function logData(name, timestamp, action) {
+    // Send log data to the backend (hypothetical backend)
+    // Here, you can make an AJAX request or use a suitable method for your backend.
+    console.log(`Name: ${name}, Time: ${timestamp}, Action: ${action}`);
+  }
+
+  function resetForm() {
+    document.getElementById("nameInput").value = "";
+    document.getElementById("inputSection").style.display = "block";
+    document.getElementById("timerSection").style.display = "none";
+    document.getElementById("timer").innerText = "Time left: 8:00";
+  }
+</script>
+
+</body>
+</html>
