@@ -176,19 +176,25 @@ a{
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
+
+
   <div class="car">
     <h2> <svg class="icon" aria-hidden="true">
       <use xlink:href="#icon-coffee" href="#icon-coffee" />
     </svg></h2>
     <label class="input">
-      <input class="input__field" type="text" placeholder="$" value="" />
+      <input class="input__field" type="number" id="addAmount" placeholder="$" value="" />
       <span class="input__label">Add To Total</span>
     </label>
    
     <div class="button-group">
-      <button>Add</button>
+      <button onclick="addToAccount()">Add</button>
     </div>
   </div>
+
+
+
   <div>
     <label for="addAmount">Add Amount: $</label>
     <input type="number" id="addAmount">
