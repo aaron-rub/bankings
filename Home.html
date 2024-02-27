@@ -662,7 +662,28 @@ button + button {
 </script>
 
   
+<script>
+  // Previous JavaScript code for handling button clicks and interactions
   
+  function fetchTransactions() {
+    fetch('http://localhost:8085/api/transactions')
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+          // Here, instead of just logging the data, you could update the UI
+          // For example, updating the account total or populating a list of transactions
+      })
+      .catch(error => console.error('Error:', error));
+  }
+  
+  // Call fetchTransactions to load initial transaction data
+  document.addEventListener('DOMContentLoaded', function() {
+      // Existing event listeners setup
+      fetchTransactions(); // Fetch transactions when the page loads
+  });
+  </script>
+    
+
 </head>
 
   
