@@ -178,6 +178,43 @@ a{
 <body>
 
 
+  <script>
+    function addToAccount() {
+      const addAmount = parseFloat(document.getElementById('addAmount').value);
+      if (!isNaN(addAmount)) {
+        // Send data to the backend
+        fetch('http://localhost:8085/api/transactions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ amount: addAmount, timestamp: new Date() }),
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            // Update UI or perform any necessary actions
+          })
+          .catch(error => console.error('Error:', error));
+      }
+    }
+  
+    function fetchTransactions() {
+      // Fetch transactions from the backend
+      fetch('http://localhost:8085/api/transactions')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          // Update UI or perform any necessary actions
+        })
+        .catch(error => console.error('Error:', error));
+    }
+  
+    document.addEventListener('DOMContentLoaded', function () {
+      fetchTransactions(); // Fetch transactions when the page loads
+    });
+  </script>
+
 
   <div class="car">
     <h2> <svg class="icon" aria-hidden="true">
