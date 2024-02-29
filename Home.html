@@ -5,23 +5,6 @@
 <head>
   <meta charset="UTF-8">
 
-  <script>
-    function logInput(inputFieldId) {
-        const userInput = document.getElementById(inputFieldId).value;
-
-        fetch('/log', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: `input=${userInput}`,
-        })
-        .then(response => response.text())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
-    }
-</script>
-
 <style>
 *{
 	
@@ -705,14 +688,6 @@ button + button {
       fetchTransactions(); // Fetch transactions when the page loads
   });
   </script>
-  
-    <input type="text" id="inputField1" placeholder="Enter text">
-    <button onclick="logInput('inputField1')">Log</button>
-    
-    <input type="text" id="inputField2" placeholder="Enter text">
-    <button onclick="logInput('inputField2')">Log</button>
-    
-    <!-- Add more input fields and buttons as needed -->
     
 
 </head>
